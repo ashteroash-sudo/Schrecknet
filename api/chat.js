@@ -21,6 +21,38 @@ function normaliser(texte) {
     .trim();
 }
 
+function attendre(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Un 503 "high demand"/"overloaded" est un problème temporaire côté Google,
+// pas une vraie erreur — ça vaut le coup de réessayer avant d'abandonner.
+function estSurcharge(statut, donnees) {
+  if (statut === 503) return true;
+  const message = donnees?.error?.message || '';
+  return /high demand|overloaded|unavailable/i.test(message);
+}
+
+async function appellerGemini(modele, cleApi, instructionSysteme, contents, niveauReflexion) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${modele}:generateContent`;
+  const reponse = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-goog-api-key': cleApi,
+    },
+    body: JSON.stringify({
+      system_instruction: { parts: [{ text: instructionSysteme }] },
+      contents,
+      generationConfig: {
+        thinkingConfig: { thinkingLevel: niveauReflexion || 'low' },
+      },
+    }),
+  });
+  const donnees = await reponse.json();
+  return { ok: reponse.ok, statut: reponse.status, donnees };
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ erreur: 'Méthode non autorisée.' });
@@ -76,17 +108,24 @@ module.exports = async function handler(req, res) {
   const dernierMessageJoueur = [...history].reverse().find((m) => m.role === 'user');
   const texteDernierMessage = normaliser(dernierMessageJoueur ? dernierMessageJoueur.text : '');
 
+  // Si le joueur tape juste "regle" ou "regles" (rien d'autre) : on répond
+  // NOUS-MÊMES avec la liste exacte, sans passer par l'IA — aucun risque
+  // qu'une commande soit mal recopiée ou inventée.
+  if (texteDernierMessage === normaliser('regle') || texteDernierMessage === normaliser('regles')) {
+    const commandes = Object.keys(config.commandes_regles || {});
+    const texte =
+      "Oui, oui... le Grêlé connaît ces commandes-là, mon petit :\n" +
+      commandes.map((c) => `- ${c}`).join('\n');
+    res.status(200).json({ reply: texte });
+    return;
+  }
+
   const fichiersReglesDemandes = new Set();
   for (const [commande, fichier] of Object.entries(config.commandes_regles || {})) {
     if (texteDernierMessage.includes(normaliser(commande))) {
       fichiersReglesDemandes.add(fichier);
     }
   }
-
-  // Si le joueur tape juste "regle" ou "regles" (rien d'autre), on lui donne
-  // la liste des commandes existantes plutôt qu'une règle précise.
-  const demandeListeRegles =
-    texteDernierMessage === normaliser('regle') || texteDernierMessage === normaliser('regles');
 
   // 2) Personnalité de base (toujours envoyée)
   let personnage = '';
@@ -138,11 +177,6 @@ module.exports = async function handler(req, res) {
 
   const instructionRegles = blocsRegles
     ? `\n\nUne règle précise du jeu est demandée. Pour cette réponse uniquement : réponds de façon CLAIRE et FIDÈLE au texte fourni ci-dessous, sans arrondir ni modifier un seul chiffre. Tu peux garder une pointe de ta voix habituelle, mais la clarté prime largement sur le personnage cette fois-ci. Termine si pertinent par une note du style "...pour le reste, mon petit, c'est ton conteur qui décide.". Voici le texte de règle exact :${blocsRegles}`
-    : demandeListeRegles
-    ? `\n\nLe joueur demande la liste des commandes de règles disponibles. Pour cette réponse uniquement, réponds de façon claire (tu peux garder une pointe de ta voix, mais la lisibilité prime) en listant CES commandes exactes, une par ligne, sans en inventer d'autres ni en oublier :\n` +
-      Object.keys(config.commandes_regles || {})
-        .map((c) => `- "${c}"`)
-        .join('\n')
     : '';
 
   const instructionSysteme =
@@ -165,35 +199,33 @@ module.exports = async function handler(req, res) {
     }));
 
   const modele = config.modele_gemini || 'gemini-3.6-flash';
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${modele}:generateContent`;
+  const niveauReflexion = config.niveau_reflexion || 'low';
 
   try {
-    const reponseGemini = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': cleApi,
-      },
-      body: JSON.stringify({
-        system_instruction: { parts: [{ text: instructionSysteme }] },
-        contents,
-        generationConfig: {
-          thinkingConfig: { thinkingLevel: config.niveau_reflexion || 'low' },
-        },
-      }),
-    });
+    // Premier essai, puis jusqu'à 2 réessais si le modèle est juste surchargé
+    // (erreur temporaire côté Google, pas un bug chez nous).
+    let resultat = await appellerGemini(modele, cleApi, instructionSysteme, contents, niveauReflexion);
+    let tentatives = 0;
+    while (!resultat.ok && estSurcharge(resultat.statut, resultat.donnees) && tentatives < 2) {
+      tentatives++;
+      await attendre(900);
+      resultat = await appellerGemini(modele, cleApi, instructionSysteme, contents, niveauReflexion);
+    }
 
-    const donnees = await reponseGemini.json();
+    // Toujours surchargé ? Dernier recours avec un modèle de secours, si configuré.
+    if (!resultat.ok && estSurcharge(resultat.statut, resultat.donnees) && config.modele_secours) {
+      resultat = await appellerGemini(config.modele_secours, cleApi, instructionSysteme, contents, niveauReflexion);
+    }
 
-    if (!reponseGemini.ok) {
+    if (!resultat.ok) {
       res.status(502).json({
-        erreur: `Erreur de l'API Gemini : ${donnees?.error?.message || reponseGemini.status}`,
+        erreur: `Erreur de l'API Gemini : ${resultat.donnees?.error?.message || resultat.statut}`,
       });
       return;
     }
 
     const texte =
-      donnees?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') ||
+      resultat.donnees?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') ||
       '... (silence. le réseau ne répond pas.)';
 
     res.status(200).json({ reply: texte });
