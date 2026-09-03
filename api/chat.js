@@ -67,6 +67,17 @@ module.exports = async function handler(req, res) {
     personnage = 'Tu es un Nosferatu méfiant et énigmatique.';
   }
 
+  // 2bis) Lore toujours connu (jamais verrouillé, à distinguer des vrais secrets)
+  let blocsConnus = '';
+  for (const nomFichier of config.fichiers_toujours_connus || []) {
+    try {
+      const contenu = lireFichier(nomFichier);
+      blocsConnus += `\n\n--- Connaissance de fond (${nomFichier}) ---\n${contenu}`;
+    } catch (e) {
+      // fichier manquant : on l'ignore silencieusement, pas de crash
+    }
+  }
+
   // 3) Contenu débloqué (seulement si le mot-clé a été prononcé)
   let blocsDebloques = '';
   for (const nomFichier of fichiersDebloques) {
@@ -87,6 +98,9 @@ module.exports = async function handler(req, res) {
 
   const instructionSysteme =
     personnage +
+    (blocsConnus
+      ? `\n\nVoici des connaissances de fond que tu maîtrises déjà et dont tu peux parler librement, à ta manière (tu peux rester évasif par nature, mais rien ne t'empêche techniquement d'en parler) :${blocsConnus}`
+      : '') +
     blocThemesVerrouilles +
     (blocsDebloques
       ? `\n\nVoici les informations que tu es autorisé à révéler à ce stade, si la conversation s'y prête :${blocsDebloques}`
