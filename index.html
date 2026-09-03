@@ -509,6 +509,7 @@ function rejouerHistorique() {
   fil.innerHTML = '';
   if (historique.length === 0) {
     ajouterMessage('systeme', 'connexion établie. quelqu\'un observe déjà.');
+    ajouterMessage('systeme', 'commande : "regle" → liste des règles connues du réseau');
   }
   historique.forEach((m) => ajouterMessage(m.role, m.text));
 }

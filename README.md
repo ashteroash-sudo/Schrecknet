@@ -31,6 +31,7 @@ Tout se modifie directement sur github.com (icône crayon sur chaque fichier), p
   - `fichiers_toujours_connus` : du lore que le Nosferatu connaît en permanence (PNJ, histoire de la ville) — jamais verrouillé, il peut en parler s'il le choisit.
   - `mots_cles` : les vrais secrets (les indices d'enquête), verrouillés tant que le mot-clé n'a pas été prononcé par un joueur. C'est LE réglage que tu changeras entre deux sessions. Chaque entrée a un `theme` (description courte, toujours visible par l'IA) et des `fichiers` (le contenu réel).
   Pour ajouter un nouveau sujet verrouillé : duplique un bloc dans `mots_cles`. Pour ajouter du lore libre : ajoute juste le nom du fichier dans `fichiers_toujours_connus`. Aucun code à toucher dans les deux cas.
+  - `commandes_regles` : des raccourcis exacts (ex : "regle combat" → renvoie le texte de `contenu/regles/combat.txt` tel quel, sans que l'IA improvise un chiffre). Taper juste "regle" (ou "regles") tout seul liste automatiquement toutes les commandes disponibles — généré depuis ce fichier, donc toujours à jour sans rien à maintenir ailleurs. Pour ajouter une règle : dépose un `.txt` dans `contenu/regles/`, ajoute une ligne `"regle xxx": "regles/xxx.txt"` dans `commandes_regles`.
 
 Chaque modification sur GitHub relance automatiquement une mise en ligne sur Vercel (~1 minute, visible dans l'onglet "Deployments" de Vercel).
 
