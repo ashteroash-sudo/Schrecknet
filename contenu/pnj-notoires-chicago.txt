@@ -1,9 +1,94 @@
-[Remplacez ce texte par votre contenu réel.]
+# ==============================================================================
+# BASE DE DONNÉES DES REJETONS DE CHICAGO (GROUNDED REPLICA // AIR-GAPPED)
+# REPLICATS STRICTS ET FICHES TECHNIQUES ISSUS DU DOCUMENT "CHICAGO BY NIGHT"
+# REMPLACEMENTS CHRONIQUE : PRINCE DANE, SHÉRIF KEOKUK, ET PRIMOGÈNE MUNCHKIN
+# ==============================================================================
 
-PNJ NOTOIRES DE CHICAGO
+## [NOTE DE L'ADMINISTRATEUR]
+*Ce fichier contient les véritables fiches techniques, attributs physiques/mentaux/sociaux et disciplines des PNJ officiels de Chicago issus des archives historiques. Conformément aux spécificités de votre chronique, le Prince Lodin est remplacé par le Prince John Dane, le Shérif Thomas Ewell (Balthazar) est remplacé par le Shérif Keokuk, et la Primogène Annabelle Treabelle est remplacée par William Munchkin.*
 
-- Nom du PNJ 1 : rôle, clan, sphère d'influence, ce qu'il sait ou cache.
-- Nom du PNJ 2 : rôle, clan, sphère d'influence, ce qu'il sait ou cache.
-- Nom du PNJ 3 : rôle, clan, sphère d'influence, ce qu'il sait ou cache.
+---
 
-Astuce : écrivez ça comme des notes de MJ normales. Le Nosferatu recevra ce texte tel quel dans son "cerveau" au moment où le mot-clé est prononcé, et pourra le reformuler avec sa propre voix.
+## [LA COUR PRINCIÈRE ET LES REPRÉSENTANTS DES CLANS]
+
+### 1. PRINCE JOHN DANE (Ventrue) 
+*   **Génération :** 10ème génération
+*   **Date de naissance / Étreinte :** Né en 1700
+*   **Disciplines :** Domination (Masse/Maîtrise), Force d'âme, Présence
+*   **Profil & Bio :** John Dane gouverne la Camarilla de Chicago depuis sa cour au 33e étage du Prudential Building (130 East Randolph). Impénétrable et pragmatique, il excelle à utiliser l'influence de son sang pour manipuler la société des mortels (municipalité, police) et imposer des règles de fer. Il applique de manière inflexible les Traditions, notamment la Mascarade, en interdisant d'engendrer de nouveaux vampires sans sa permission et en exigeant la destruction de toutes les preuves de chasses. Il considère les nouveau-nés de Pilsen comme de simples fusibles politiques dans ses intrigues contre ses opposants et le Sabbat.
+---
+
+### 2. SHÉRIF KEOKUK (Gangrel Peorias) 
+*   **Génération :** 8ème/9ème génération (estimée)
+*   **Date de naissance / Étreinte :** Né en 1811 (Peorias)
+*   **Disciplines :** Protéisme, Force d'âme, Puissance
+*   **Profil & Bio :** Le Shérif Keokuk est le bras armé de la justice de John Dane. Silhouette massive et menaçante, il impose un silence de mort par sa seule présence physique à l'Elysium. En tant que Shérif, il fait respecter la Lex Talionis, pourchasse sans relâche les briseurs de Mascarade, traque les nids du Sabbat et s'assure qu'aucun intrus ne pénètre dans le domaine de Chicago.
+---
+
+### 3. WILLIAM MUNCHKIN (Toréador) - En remplacement d'Annabelle Treabelle qui à entendu l'appel et à cédé sa place.
+*   **Statut :** Primogène Toréador de Chicago & Meneur du Clan de la Rose
+*   **Disciplines :** Auspex, Célérité, Présence
+*   **Profil & Bio :** William Munchkin est l'esthète et le politicien le plus influent de l'Elysium de Chicago (qui se réunit au Chicago Symphony Orchestra ou au Civic Theater). Suite à l'assassinat brutal de son plus proche allié d'affaires Francis Ruiz Verde, Munchkin navigue dans des complots précaires pour protéger son vaste empire financier de blanchiment d'art et d'antiquités à Downtown Chicago. Il utilise volontiers la coterie des joueurs comme intermédiaires pour faire le sale travail de re-sécurisation du domaine de Pilsen, en échange de l'annulation de leurs dettes ou de faveurs de praestation majeures.
+
+---
+
+## [LES ANCIENS DE LA CAMARILLA & LIEUTENANTS DU PRINCE]
+
+### 4. HORATIO BALLARD (Ventrue)
+*   **Génération :** 8ème génération (Engendré par Lodin/Dane)
+*   **Date de naissance / Étreinte :** Né en 1832, étreint en 1881
+*   **Profil & Bio :** Un milliardaire caucasien grotesquement obèse qui commence à se dégarnir, vêtu d'un complet de la taille d'une tente. Il contrôle presque tout le tissu économique et les grandes entreprises légales de Chicago. Ballard a développé la capacité unique de manger de la nourriture mortelle en grandes quantités sans la régurgiter grâce à sa Volonté d'acier, ce qui dégoûte profondément ses pairs vampires. Il mène une guerre de sabotage et de chantage financier impitoyable et secrète contre Al Capone.
+---
+
+### 5. AL CAPONE (Ventrue)
+*   **Génération :** 8ème génération (Engendré par Lodin/Dane)
+*   **Date de naissance / Étreinte :** Né en 1891, étreint en 1941
+*   **Profil & Bio :** Le légendaire parrain de la pègre de Chicago. Après avoir régné sur la prohibition de son vivant, il contrôle aujourd'hui l'intégralité de la Mafia italienne locale, le trafic de drogue, les loteries clandestines et la majorité des clubs et lupanars du Râtelier (Rush Street). Il voue une haine féroce à Horatio Ballard, qui gère le côté légal de la ville. Des rumeurs étranges courent à l'Elysium selon lesquelles Capone, fatigué de la violence, chercherait secrètement à atteindre l'état mythique de Golconde. Il ne se nourrit que sur des femmes d'origine italienne importées d'Europe par avion.
+
+---
+
+### 6. CRITIAS (Brujah)
+*   **Génération :** 5ème génération (Engendré par le Mathusalem Menele)
+*   **Date de naissance / Étreinte :** Né en 488 av. J.-C., étreint en 432 av. J.-C.
+*   **Profil & Bio :** Philosophe et intellectuel grec d'une immense sagesse. Il se considère comme le protecteur des esprits libres et des universités de Chicago (qu'il contrôle indirectement). Il soutient secrètement les factions Anarchs pour déstabiliser la tyrannie princière dans l'espoir d'instaurer un modèle de gouvernement démocratique chez les vampires. Il entretient une haine éternelle envers Tyler, qui a exécuté l'un de ses descendants au cours des Guerres du Conseil de 1980.
+
+---
+
+### 7. PATRICIA BOLLINGBROKE ("Tyler") (Brujah)
+*   **Génération :** 6ème génération (Engendré par Robin Leeland)
+*   **Date de naissance / Étreinte :** Née en 1352, étreinte en 1381
+*   **Profil & Bio :** Ancienne meneuse de la révolte des paysans anglais de 1381. Tyler s'est installée à Chicago à l'aéroport international d'O'Hare, dont elle contrôle entièrement la sécurité et l'espace aérien. Derrière son statut d'Ancienne respectée de la Camarilla au Primogène, elle cache un passé ténébreux lié aux origines fondatrices du Sabbat en Europe. Elle manipule secrètement de nombreux Anarchs, dont Juggler, qui lui est lié par le sang.
+
+---
+
+### 8. KEVIN JACKSON (Ventrue)
+*   **Génération :** 8ème génération (Engendré par Lodin/Dane)
+*   **Date de naissance / Étreinte :** Né en 1964, étreint en 1984
+*   **Profil & Bio :** Leader charismatique et ultra-sapé du gang des Bloods à Chicago. Il gère l'essentiel du trafic de cocaïne à Cabrini Green. Étreint sous l'influence de John Dane/Lodin pour contrer la pègre italienne de Capone, il joue le rôle de sujet loyal à la cour, tout en préparant secrètement l'unification des gangs au niveau national. Son havre à Cabrini Green est une forteresse armée de factionnaires capables de détecter les intrus utilisant l'Occultation, dotés d'armes lourdes, de grenades au phosphore et de lance-flammes.
+---
+
+### 9. KHALID (Nosferatu)
+*   **Génération :** 6ème génération (Engendré par Alexius)
+*   **Profil & Bio :** Le chef incontesté du clan Nosferatu (les "Rats d'Égout") de Chicago et membre éminent du Primogène. C'est le seul membre de la cour à être resté totalement libre de la Domination des Mathusalems Menele et Helena en restant dissimulé à leurs yeux. Khalid gère un réseau d'espionnage et de renseignement souterrain tentaculaire à travers les égouts, le Succubus Club et l'Elysium, accumulant des secrets sur chaque rejeton de la ville. Son havre principal est une vaste caverne située au nord d'Evanston.
+*   **Disciplines notables :** Maîtrise exceptionnelle de la Dissimulation (Occultation) et de l'Animalisme.
+
+---
+
+### 10. NEALLY EDWARDS (Ventrue)
+*   **Génération :** 8ème génération (Engendré par Lodin/Dane)
+*   **Date de naissance / Étreinte :** Né en 1863, étreint en 1896
+*   **Profil & Bio :** Le principal administrateur et bureaucrate du Prince. Neally Edwards passe ses nuits à gérer les affaires quotidiennes du clan Ventru et de la municipalité de Chicago depuis son bureau souterrain d'un bâtiment municipal. Toujours vêtu de costumes impeccables pour masquer sa calvitie sous une perruque de haute qualité, il arbitre les conflits de territoires entre vampires et coordonne l'infiltration politique.
+
+---
+
+### 11. EDGAR DRUMMOND (Ventrue)
+*   **Génération :** 8ème génération (Engendré par Lodin/Dane)
+*   **Date de naissance / Étreinte :** Né en 1831, étreint en 1865
+*   **Profil & Bio :** Edgar Drummond est un vampire Ventrue obèse et infantile, portant perpétuellement une casquette de conducteur de train sur sa tête flasque. Il contrôle de manière absolue le réseau ferré de Chicago (notamment Union Station), ce qui lui permet d'aider à faire voyager discrètement et en toute sécurité les cercueils ou havres de transport des autres vampires (comme Inyanga) pour des tarifs élevés ou des faveurs politiques.
+
+---
+
+### 12. BOBBY WEATHERBOTTOM (Ventrue)
+*   **Génération :** 8ème génération (Engendré par Lodin/Dane)
+*   **Date de naissance / Étreinte :** Né en 1963, étreint en 1984
+*   **Profil & Bio :** Bobby est un jeune prodige de l'informatique solitaire, timide et craintif. Étreint pour s'assurer que la Camarilla contrôle la sécurité des données et les flux informatiques de Chicago. S'il se retrouve pris dans une crise de succession, Bobby est le type de vampire qui s'enfuit immédiatement pour implorer la protection du clan Toréador ou de William Munchkin.
