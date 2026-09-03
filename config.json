@@ -1,17 +1,11 @@
 {
-  "_lisez_moi": "Pour changer les mots-clés entre deux sessions : modifiez juste les valeurs ci-dessous sur github.com (bouton crayon), validez (Commit changes). Vercel republie tout seul en ~1 minute. 'theme' = une courte description du sujet, TOUJOURS visible par l'IA (sert à reconnaître qu'une question est sensible). 'fichiers' = le contenu réel, qui n'est envoyé que si le mot-clé est prononcé. Pour ajouter un nouveau sujet verrouillé : dupliquez un bloc, changez le mot-clé, le thème, et le(s) fichier(s) — pas besoin de toucher au code.",
+  "_lisez_moi": "Pour changer le mot-clé entre deux sessions : modifiez sa valeur ci-dessous sur github.com (bouton crayon), validez (Commit changes). Vercel republie tout seul en ~1 minute. 'fichiers_toujours_connus' = du lore que le Nosferatu connaît en permanence, jamais verrouillé. 'mots_cles' = les vrais secrets, verrouillés tant que le mot-clé n'a pas été prononcé par un joueur.",
 
   "modele_gemini": "gemini-3.6-flash",
 
+  "fichiers_toujours_connus": ["pnj-notoires-chicago.txt", "historique-mascarade.txt"],
+
   "mots_cles": {
-    "sang-rouge": {
-      "theme": "les PNJ notoires de Chicago et leurs secrets",
-      "fichiers": ["pnj-notoires-chicago.txt"]
-    },
-    "nuit-noire": {
-      "theme": "l'histoire cachée de la Mascarade à Chicago",
-      "fichiers": ["historique-mascarade.txt"]
-    },
     "toile-dechiree": {
       "theme": "les indices concrets sur l'enquête en cours des joueurs",
       "fichiers": ["indices-joueurs.txt"]

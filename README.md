@@ -27,7 +27,10 @@ Tout se modifie directement sur github.com (icône crayon sur chaque fichier), p
 
 - **`contenu/personnage-nosferatu.txt`** : la personnalité du PNJ. À écrire une bonne fois pour toutes.
 - **`contenu/pnj-notoires-chicago.txt`**, **`historique-mascarade.txt`**, **`indices-joueurs.txt`** : le contenu réel de ton scénario, à la place des placeholders.
-- **`config.json`** : la liste des mots-clés. C'est LE fichier que tu changeras entre deux sessions. Chaque entrée a un `theme` (description courte, toujours visible par l'IA — sert à ce qu'elle reconnaisse une question sensible sans jamais recevoir le contenu réel) et des `fichiers` (le contenu réel, transmis seulement si le mot-clé est prononcé). Pour ajouter un nouveau sujet verrouillé : duplique un bloc, change le mot-clé/le thème/le(s) fichier(s) — pas de code à toucher.
+- **`config.json`** : deux catégories désormais.
+  - `fichiers_toujours_connus` : du lore que le Nosferatu connaît en permanence (PNJ, histoire de la ville) — jamais verrouillé, il peut en parler s'il le choisit.
+  - `mots_cles` : les vrais secrets (les indices d'enquête), verrouillés tant que le mot-clé n'a pas été prononcé par un joueur. C'est LE réglage que tu changeras entre deux sessions. Chaque entrée a un `theme` (description courte, toujours visible par l'IA) et des `fichiers` (le contenu réel).
+  Pour ajouter un nouveau sujet verrouillé : duplique un bloc dans `mots_cles`. Pour ajouter du lore libre : ajoute juste le nom du fichier dans `fichiers_toujours_connus`. Aucun code à toucher dans les deux cas.
 
 Chaque modification sur GitHub relance automatiquement une mise en ligne sur Vercel (~1 minute, visible dans l'onglet "Deployments" de Vercel).
 
