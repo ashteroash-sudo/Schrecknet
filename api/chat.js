@@ -218,8 +218,23 @@ module.exports = async function handler(req, res) {
     }
 
     if (!resultat.ok) {
+      const messageBrut = resultat.donnees?.error?.message || '';
+      const correspondanceAttente = messageBrut.match(/retry in ([\d.]+)s/i);
+      if (resultat.statut === 429 && correspondanceAttente) {
+        const secondes = Math.ceil(parseFloat(correspondanceAttente[1]));
+        res.status(502).json({
+          erreur: `Quota gratuit temporairement épuisé — réessaie dans environ ${secondes} secondes.`,
+        });
+        return;
+      }
+      if (resultat.statut === 429) {
+        res.status(502).json({
+          erreur: 'Quota de l\'API Gemini dépassé pour le moment. Réessaie dans une minute ; si ça revient souvent en session, voir la note sur la limite gratuite dans le README.',
+        });
+        return;
+      }
       res.status(502).json({
-        erreur: `Erreur de l'API Gemini : ${resultat.donnees?.error?.message || resultat.statut}`,
+        erreur: `Erreur de l'API Gemini : ${messageBrut || resultat.statut}`,
       });
       return;
     }
