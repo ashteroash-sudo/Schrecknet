@@ -1,0 +1,13 @@
+LE JET DE REMORDS (FIN DE SESSION)
+
+À la fin de la session, si le personnage possède au moins 1 Flétrissure spirituelle sur sa jauge, il faut effectuer un Jet de Remords pour savoir si l'esprit s'endurcit ou décline.
+
+Mise en œuvre :
+1. Compter le nombre de cases blanches libres sur la jauge (entre le niveau d'Humanité actuel et les Flétrissures cochées).
+2. Lancer autant de d10 ordinaires que de cases libres (minimum 1 dé lancé).
+
+Résultat :
+- Au moins 1 réussite (6 ou plus) : le repentir l'emporte. Le score d'Humanité est préservé, et toutes les Flétrissures sont effacées.
+- 0 réussite : endurcissement de la Bête. Le personnage perd immédiatement 1 point d'Humanité, puis toutes les Flétrissures sont effacées.
+
+Astuce : les Convictions du personnage permettent de réduire le nombre de Flétrissures gagnées lors d'un acte répréhensible si l'acte a été commis pour défendre un Principe fondamental.

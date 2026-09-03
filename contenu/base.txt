@@ -1,0 +1,11 @@
+SYSTÈME DE JEU DE BASE
+
+Toutes les actions majeures ou incertaines se résolvent en lançant un lot de dés à dix faces (d10). La réserve de dés se détermine en combinant un Attribut et une Compétence correspondante (ex. : Force + Bagarre pour frapper, Manipulation + Subterfuge pour duper).
+
+Chaque dé affichant un score de 6 ou plus compte comme une réussite. Si le total de réussites égale ou dépasse la Difficulté fixée par le Conteur, l'action est réussie.
+
+Résultat par dé (d10) :
+- 1 à 5 : Échec.
+- 6 à 9 : Réussite.
+- 10 : Compte pour 1 réussite.
+- Paire de 10 : Victoire Critique, compte pour 4 réussites au total.

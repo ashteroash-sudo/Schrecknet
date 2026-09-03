@@ -1,0 +1,21 @@
+LE TOUR DE COMBAT DE A À Z
+
+Phase 1 — Intention & Éveil :
+Chaque joueur déclare ce qu'il souhaite accomplir ce tour-ci (s'abriter, tirer, charger un ennemi...). C'est à ce moment que se font les tests d'Exaltation pour activer des Disciplines ou soigner des blessures superficielles via la régénération.
+
+Phase 2 — Pool de Conflit :
+Constituer sa réserve de dés (Attribut + Compétence), et déterminer si on utilise une Poussée de Sang (Coup de Sang) pour ajouter des dés supplémentaires via un test d'Exaltation préalable.
+
+Phase 3 — Exécution par Arènes (ordre officiel, dans cet ordre strict) :
+1. Surprise — Attaque furtive : Dextérité + Furtivité vs Astuce + Vigilance. Difficulté fixe à 1 pour l'attaquant. Immunité totale à la défense.
+2. Mêlée continue — Corps-à-corps engagé : Force + Bagarre / Dext. + Mêlée. Pour les combattants déjà au corps-à-corps au tour précédent.
+3. Distance — Tirs : Sang-froid + Armes à feu vs Dext. + Athlétisme. Modificateurs de couvert appliqués (-2 à +2 dés). Engagement récent.
+4. Nouvelle mêlée — Force + Bagarre / Force + Mêlée. Pour les personnages qui chargent pour engager un corps-à-corps ce tour-ci.
+5. Hors Combat — Actions & Social : variable selon la tâche (Larcin, Social...). Piratage, vol, joutes oratoires, ou négociations pour cesser le combat.
+
+Phase 4 — Résolution & Marge de Dégâts :
+Les jets de combat sont en opposition. Le camp avec le plus de réussites remporte l'échange. Le vainqueur inflige des dégâts égaux à sa marge de réussite (réussites en excès) PLUS le modificateur de son arme (ex. : +2 pour un pistolet léger, +3 pour une épée).
+
+Esquive : au corps-à-corps, on peut déclarer une esquive avec Dextérité + Athlétisme. Même en cas de victoire à l'opposition, aucun dégât n'est infligé à l'adversaire.
+
+Adversaires multiples : en cas d'attaques multiples dans un même tour, on perd 1 dé cumulatif sur la réserve de défense pour chaque adversaire après le premier (1er adversaire : pool complet, 2e : -1 dé, 3e : -2 dés).

@@ -1,0 +1,9 @@
+L'HUMANITÉ (LA SPIRALE DE LA CHUTE)
+
+L'Humanité mesure le degré de connexion du personnage avec son âme mortelle et sa capacité à résister à sa Bête. Elle oscille entre 10 (sainteté) et 0 (perte totale d'esprit). Au début d'une chronique standard, les joueurs commencent généralement avec une Humanité de 7.
+
+Pourquoi elle compte :
+- Relations humaines : plus l'Humanité décline, plus les traits de prédateur s'accentuent — pénalité croissante sur les tests d'interactions sociales positives avec les humains.
+- La Couleur de la Vie (Blush of Life) : simule la physiologie humaine (chaleur, rapports intimes). Humanité 8+ : automatique. Humanité 5-7 : nécessite de dépenser du sang et réussir un jet, sous peine de -1 à -2 dés. Humanité 4 ou moins : toute simulation physique est impossible.
+- Sommeil diurne : si le refuge est attaqué en journée, il faut réussir un jet d'Humanité (Difficulté 3) pour s'éveiller ; la réserve de dés d'action physique est strictement plafonnée par le score actuel d'Humanité.
+- Perte totale (Humanité 0) : le personnage devient un Sans âme — la Bête prend définitivement le contrôle et le personnage est retiré au joueur pour être géré par le Conteur.

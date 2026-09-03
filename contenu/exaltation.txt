@@ -1,0 +1,11 @@
+LE TEST D'EXALTATION (ROUSE CHECK)
+
+Chaque fois que la puissance du sang est éveillée — pour activer une Discipline, se soigner (Régénération), ou lors du réveil quotidien au crépuscule — il faut effectuer un test d'Exaltation.
+
+Lancer UN SEUL d10 :
+- 6 ou plus : Réussite. Le Sang répond sans effort, la Soif n'augmente pas.
+- 1 à 5 : Échec. Le sang s'est consumé, la Soif augmente immédiatement de 1.
+
+Si la Soif est déjà à 5 et que le test d'Exaltation est raté, il faut immédiatement faire face à la Frénésie de Soif.
+
+Rappel (voir aussi la règle Volonté) : on ne peut jamais utiliser de Volonté pour relancer le dé unique d'un test d'Exaltation.

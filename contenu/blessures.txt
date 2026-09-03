@@ -1,0 +1,16 @@
+BLESSURES, AFFAIBLISSEMENT ET TABLEAU INCAPACITANT
+
+Deux types de dégâts :
+- Superficiels (/) : coups, balles ordinaires sur vampires.
+- Aggravés (X) : feu, soleil, morsures de vampires.
+
+Pour les vampires, les dégâts superficiels subis sont systématiquement divisés par 2 (arrondi au supérieur).
+
+Une fois la jauge de Santé pleine, tout dégât superficiel supplémentaire est noté comme Aggravé (X), et le personnage tombe en état d'Affaiblissement (pénalité de -2 dés à toutes ses actions physiques et mentales).
+
+Tableau des Blessures Incapacitantes (jet de 1d10 + nombre de dégâts Aggravés 'X' sur la jauge) :
+- 1 à 6 : Sonné (Stunned). Le personnage est désorienté ; il doit dépenser 1 point de Volonté pour pouvoir agir au prochain tour.
+- 7 à 8 : Blessure Grave. Pénalité immédiate de -1 dé sur tous les jets physiques.
+- 9 à 10 : Membre Cassé. Un membre est inutilisable (bras ou jambe) ; mouvements ou maniements d'armes physiques : -2 dés.
+- 11 à 12 : Estropié / Hors Combat. Le personnage s'effondre, incapable d'agir pour le reste de la scène de combat.
+- 13+ : Mort ultime / Torpeur. Mort définitive pour un humain, ou entrée immédiate en Torpeur léthargique pour un vampire.

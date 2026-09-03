@@ -1,0 +1,12 @@
+LES FLÉTRISSURES (STAINS) SPIRITUELLES
+
+Les Flétrissures représentent les cicatrices spirituelles des péchés commis. On en accumule en violant les Principes de la Chronique, en étreignant ou liant au sang un mortel, ou si ses actions entraînent la détérioration/mort de sa Pierre de Touche (le mortel qui rattache à l'ancienne vie).
+
+Barème :
+- Violer un Principe de la Chronique : 1 à 3 Flétrissures (selon la gravité). Cochée sur la jauge d'Humanité, de droite à gauche.
+- Lier au sang un mortel : +1 Flétrissure.
+- Étreindre un mortel (créer un infant) : +2 Flétrissures.
+- Pierre de Touche détériorée : +1 Flétrissure (+2 si causé par soi-même).
+- Pierre de Touche détruite : +2 Flétrissures (+3 si causé par soi-même).
+
+Dégénérescence spirituelle : si la somme du score d'Humanité actuel et des Flétrissures dépasse 10 (jauge pleine), il n'y a plus de place pour cocher de nouvelles Flétrissures. Le personnage entre en Dégénérescence : il subit immédiatement l'état d'Affaiblissement (-2 dés) dû à la culpabilité inconsciente, et encaisse 1 point de dégât de Volonté aggravé pour chaque nouvelle Flétrissure qu'il devrait normalement recevoir.

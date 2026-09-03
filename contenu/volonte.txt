@@ -1,0 +1,11 @@
+LA VOLONTÉ (LA JAUGE DE L'ESPRIT)
+
+Le score maximum de Volonté est égal à Sang-froid + Résolution.
+
+Usages :
+- Relance de dés : dépenser 1 point de Volonté pour relancer jusqu'à 3 dés ORDINAIRES au choix (jamais les dés de Soif rouges d'une réserve).
+- Prendre le contrôle : dépenser de la Volonté permet de résister temporairement à une contrainte mentale (Domination, Présence), de résister à la frénésie, ou d'effectuer des mouvements infimes si empalé.
+- Ignorer les pénalités : dépenser 1 Volonté permet d'ignorer les malus de l'état d'Affaiblissement pour un tour.
+- Régénération : au début d'une session, on récupère un nombre de points de Volonté superficiels égal au score le plus élevé entre Sang-froid ou Résolution. En jeu, accomplir son Désir personnel peut régénérer 1 Volonté.
+
+Important : on ne peut JAMAIS utiliser de points de Volonté pour relancer un dé de Soif (dé rouge) ou le dé unique d'un test d'Exaltation.

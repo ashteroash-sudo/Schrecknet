@@ -1,0 +1,9 @@
+LA SOIF ET LES DÉS ROUGES DE L'INFAMIE
+
+La jauge de Soif va de 1 à 5. Lors de chaque jet de dés en jeu, il faut remplacer un nombre de dés ordinaires égal au score actuel de Soif par des dés de Soif rouges.
+
+Triomphe Brutal (Messy Critical) :
+Se produit quand un jet est remporté (réussites ≥ difficulté) ET que le lancer comporte un critique (une paire de 10) dont au moins un des '10' se trouve sur un dé rouge de Soif. L'action réussit, mais la Bête se déchaîne de manière impulsive ou violente : violation flagrante de la Mascarade, mort non souhaitée de la proie, ou gain d'une Flétrissure spirituelle. Un Triomphe Brutal ne peut PAS être annulé avec de la Volonté.
+
+Échec Bestial (Bestial Failure) :
+Se produit quand un jet est raté (réussites < difficulté) ET qu'au moins un dé rouge de Soif affiche un '1'. Le personnage tombe immédiatement sous le coup d'une Compulsion (de clan ou générique : Soif, Domination, Destruction, Paranoïa) qui impose des pénalités dramatiques jusqu'à la fin de la scène.
