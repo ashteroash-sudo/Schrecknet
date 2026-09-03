@@ -1,12 +1,13 @@
 {
-  "_lisez_moi": "Pour changer le mot-clé entre deux sessions : modifiez sa valeur ci-dessous sur github.com (bouton crayon), validez (Commit changes). Vercel republie tout seul en ~1 minute. 'fichiers_toujours_connus' = du lore que le Nosferatu connaît en permanence, jamais verrouillé. 'mots_cles' = les vrais secrets, verrouillés tant que le mot-clé n'a pas été prononcé par un joueur.",
+  "_lisez_moi": "Pour changer le mot-clé entre deux sessions : modifiez sa valeur ci-dessous sur github.com (bouton crayon), validez (Commit changes). Vercel republie tout seul en ~1 minute. 'fichiers_toujours_connus' = du lore que le Nosferatu connaît en permanence, jamais verrouillé. 'mots_cles' = les vrais secrets, verrouillés tant que le mot-clé n'a pas été prononcé par un joueur. 'niveau_reflexion' = vitesse de réponse de l'IA : 'low' (rapide, recommandé pour du roleplay fluide) ou 'high' (plus lent, réfléchit davantage — à tester si les réponses manquent de finesse).",
 
   "modele_gemini": "gemini-3.6-flash",
+  "niveau_reflexion": "low",
 
   "fichiers_toujours_connus": ["pnj-notoires-chicago.txt", "historique-mascarade.txt"],
 
   "mots_cles": {
-    "quinquin": {
+    "toile-dechiree": {
       "theme": "les indices concrets sur l'enquête en cours des joueurs",
       "fichiers": ["indices-joueurs.txt"]
     }
