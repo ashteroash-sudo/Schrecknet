@@ -1,8 +1,5 @@
-[Remplacez ce texte par votre contenu réel.]
+1. L'indice principal : Le nid d'éclaireurs de Rogers Park
+Une fois débarrassé des Sangs Clairs, Le Grêlé honore sa part du marché. Il leur livre l'emplacement exact d'une cellule de reconnaissance du Sabbat :
 
-INDICES POUR LES JOUEURS
-
-- Indice 1 : ce qu'il révèle, à quel point de l'intrigue il se rattache.
-- Indice 2 : ce qu'il révèle, à quel point de l'intrigue il se rattache.
-
-Astuce : si un mot-clé doit débloquer plusieurs indices à la fois, mettez-les tous dans ce même fichier — inutile de multiplier les petits fichiers.
+    La localisation : Un vieil entrepôt désaffecté situé à Rogers Park Est, précisément près de Paulina Street, du cimetière catholique et de la ligne de métro aérien (CTA Red Line, station Howard).
+    Ce qu'il sait : Il y a repéré des mouvements nocturnes hautement suspects ces dernières nuits. Il s'agit de Shovelheads (nouveau-nés du Sabbat à peine conscients de leur état, envoyés au casse-pipe pour tester les défenses de la ville).
