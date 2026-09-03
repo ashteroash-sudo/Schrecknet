@@ -1,7 +1,80 @@
-[Remplacez ce texte par votre contenu réel.]
+# ==============================================================================
+# SCHRECKNET-OFFLINE // ARCHIVE DU DOMAINE DE CHICAGO // DOSSIER HISTORIQUE
+# CLASSIFICATION : COLD-SEC // ACCÈS CONTEUR UNIQUEMENT
+# SUJET : L'AUTRE FACE DE LA DEUXIÈME CITÉ (1700 - NUITS MODERNES)
+# ==============================================================================
 
-HISTORIQUE DE LA MASCARADE À CHICAGO
+Ce document compile les faits marquants, les luttes d'influence secrètes et la chronologie indispensable de la présence vampirique à Chicago, s'appuyant rigoureusement sur les archives historiques locales de la Camarilla et du réseau Nosferatu.
 
-- Événement marquant 1 : date approximative, ce qui s'est passé, qui était impliqué.
-- Événement marquant 2 : date approximative, ce qui s'est passé, qui était impliqué.
-- Rumeurs et versions contradictoires que les joueurs peuvent découvrir.
+---
+
+## I. LE DEUX-PIÈCES DU JYHAD : LE CONFLIT ORIGINEL (1700 - 1832)
+
+Sous les pavés de Chicago dort une vérité terrifiante : la ville n'a pas été construite par hasard. Elle est le champ de bataille physique d'un affrontement millénaire entre deux Mathusalems de la 4ème génération.
+
+*   **1700 — La Retraite de Menele :** Le Mathusalem Brujah **Menele** (Ménélas) rejoint les tribus amérindiennes des Plaines. Cherchant à échapper à sa rivale éternelle et à trouver la paix, il se rapproche de l'état mystique de Golconde [120].
+*   **1820 — La Traque d'Héléna :** La Mathusalem Toréador **Héléna** retrouve sa piste. Menele est contraint de fuir et se réfugie auprès de son ami, le Chef Faucon Noir (*Black Hawk*) [120]. Menele (connu des Amérindiens sous le nom de *Loup Blême*) utilise son influence pour pousser les tribus à résister à l'invasion des colons blancs [95].
+*   **1832 — La Bataille de Fort Chicago & La Torpeur :** Lors d'une guerre sanglante et décisive entre les soldats américains et les Indiens de Faucon Noir, ces derniers subissent une défaite écrasante [121]. Durant le paroxysme de l'affrontement, Menele et Héléna s'affrontent indirectement et se blessent si gravement qu'ils tombent tous deux en état de torpeur dans le sol de ce qui deviendra Chicago [121, 248, 407]. Leurs partisans respectifs cachent leurs corps et perpétuent leur vendetta à travers les siècles [119, 248, 407].
+
+---
+
+## II. LES PREMIERS CONSTRUCTIONS ET LA NUIT DU DIABLE (1833 - 1871)
+
+*   **1833 — Fondation de Chicago & Règne de Maxwell :** La ville est officiellement fondée [121]. **Maxwell**, un Brujah noir d'origine espagnole d'une puissance redoutable, s'impose comme le premier Prince de la ville [96, 121]. Il installe ses pions au sein des instances dirigeantes naissantes [96]. Exclu de la haute société des mortels en raison de sa couleur de peau, il trouve chez les Damnés un refuge exempt de préjugés [96].
+*   **1871 — La Nuit du Diable (Le Grand Incendie) :** Le pouvoir de Maxwell et de ses alliés est soudainement anéanti par un cataclysme de flammes [97]. **Maureen O'Leary**, une Malkavienne tourmentée et suicidaire, allume le Grand Incendie de Chicago dans l'espoir d'y trouver la Mort Ultime [311, 312, 121]. Étonnamment, peu de mortels périssent, mais 18 000 bâtiments sont réduits en cendres, détruisant l'intégralité du réseau d'influence et de partisans de Maxwell [97].
+*   **Le Coup d'État de Lodin :** Profitant du chaos absolu provoqué par l'incendie, le jeune ambitieux Ventru **Lodin** porte son coup [98, 121]. Accompagné d'un petit groupe de Toréadors et de Ventrus fidèles, il traque Maxwell dans son domaine de l'East Side [98]. Lors d'un affrontement d'une violence extrême, Maxwell décapite plusieurs assaillants d'un sabre avant de se faire trancher le bras, de se transformer en brume et de s'enfuir à jamais de Chicago [98, 353]. Lodin s'auto-proclame Prince et extermine méthodiquement tous les autres Ventrus de la ville qui auraient pu contester son autorité ; depuis cette nuit, tous les Ventrus de Chicago descendent de sa lignée [98].
+
+---
+
+## III. LE PRAXIS DE CAUCHEMAR & LA TRÊVE ARMÉE (1871 - 1966)
+
+*   **L'Instrumentalisation des Luttes Sociales (1886 - 1894) :** Lodin assoit sa domination sur les élites industrielles et utilise la police pour réprimer brutalement le prolétariat naissant [99, 100].
+    *   *L'émeute de Haymarket (1886) :* Lodin tente d'écraser les syndicats naissants en faisant lancer une bombe par l'un de ses agents mortels lors d'une manifestation, provoquant la pendaison de quatre leaders syndicaux innocents et transformant ces derniers en martyrs, ce qui renforce l'ardeur syndicale [100, 357].
+    *   *La grève Pullman (1894) :* Sans consulter son Prince, le nouveau lieutenant de Lodin, **Edgar Drummond**, fait intervenir les troupes fédérales pour briser la grève qui paralyse ses chemins de fer, provoquant un scandale mondial [101, 359].
+*   **1919 — La Création de l'Elysium et du Primogène :** Craignant l'ambition dévorante de Lodin et sa soif de sang ancien, plusieurs puissants aînés de la ville (dont la Gangrel **Inyanga**, le Nosferatu **Khalid** et le Brujah **Procel**) s'unissent pour former le conseil des Primogènes afin de faire contrepoids au pouvoir princier [102, 103, 121]. S'appuyant sur la tradition sacrée des Toréadors interdisant la violence dans les lieux de haute culture, ils établissent le premier **Elysium** dans les couloirs de l'Orchestra Hall de Chicago [103, 121].
+*   **1921 — L'Interdiction de Gary :** Furieux de voir son autorité contestée par son rival socialiste **Modius**, exilé à Gary, Lodin décrète l'Interdiction de Gary [104, 121]. Il ordonne à ses lieutenants **Horatio Ballard** et **Al Capone** d'étouffer l'économie de la ville industrielle de l'Indiana [104]. Capone utilise la mafia et les extorsions pour paralyser les infrastructures locales, isolant économiquement Gary et Modius sans que ces derniers ne puissent riposter [104, 105].
+
+---
+
+## IV. LES NUITS DE FURIE & LA CONVENTION DE 1968 (1966 - 1968)
+
+*   **1966 — L'Étincelle de Lincoln Park :** Après cinquante ans d'une paix de façade (le *Praxis de Cauchemar*), les tensions entre les nouveau-nés Anarchs et les anciens de la Camarilla explosent [108, 121]. Le shérif de Lodin, **Balthazar**, repère un groupe de Brujahs dans Lincoln Park [109]. Persuadé qu'ils complotent contre le Prince, il les attaque sauvagement et assassine deux d'entre eux, déclenchant une véritable guerre de l'ombre à travers toute la métropole [109].
+*   **1968 — La Convention Démocrate & Le Massacre :** La tension atteint son paroxysme en août 1968 alors que des milliers de mortels et de vampires affluent en ville pour la convention politique [111]. Lodin obtient carte blanche de la Justicar Ventrue pour régler définitivement le problème des Anarchs [112].
+    *   *L'affrontement en direct :* Le 28 août, alors que les manifestants Anarchs (humains et vampires) quittent Lincoln Park, Lodin lance une armée de policiers lourdement armés et d'Anciens dans les rues [112]. Le carnage est si brutal qu'il est diffusé en direct sur les chaînes de télévision nationales [112].
+    *   *La répression :* Pour protéger la Mascarade, Lodin fait détruire des kilomètres de pellicules de presse et élimine les témoins oculaires [113]. Le mouvement Anarch est démantelé, ses leaders locaux et nationaux sont méthodiquement exterminés, et Lodin promulgue un édit interdisant formellement d'Engendrer sous peine de Chasse au Sang [113, 114].
+
+---
+
+## V. LES GUERRES DU CONSEIL & LA RÉVOLUTION DE MALDAVIS (1983 - 1987)
+
+*   **1983 — L'Opération Incubateur & L'élection de Washington :** L'élection du premier maire noir réformiste de Chicago, Harold Washington, fragilise les fondations de Lodin [117, 121, 386]. En réponse, Lodin lance l'Opération Incubateur, une tentative désespérée de reprendre le contrôle de la municipalité [121, 386].
+*   **La Rébellion de Maldavis :** Une jeune et charismatique vampire du sang mince, **Maldavis** (Carol Davis), commence à unir les Anarchs survivants et à mener des raids destructeurs contre les places fortes du Prince [117, 118, 293, 295]. Lodin s'avère incapable de localiser son refuge [118].
+    *   *Le double jeu du Primogène :* Sans que Maldavis ne s'en rende compte, elle est manipulée et financée en secret par les Primogènes eux-mêmes (notamment **Annabelle Treabelle** et **Critias**) pour humilier Lodin et briser sa prétention au contrôle absolu [295, 417].
+*   **1987 — Résolution et Éveil d'Héléna :** Lodin parvient in extremis à écraser la révolte de Maldavis et à sécuriser de nouveau son trône, mais ses pouvoirs de création sont désormais sévèrement bridés par le Primogène [118, 121, 416]. C'est durant cette même année trouble que le maire Harold Washington meurt et que la Mathusalem **Héléna** s'éveille enfin de sa longue torpeur [121].
+*   **La Tragédie Cachée :** Souffrant d'une soif dévorante qui n'est apaisée que par le sang d'anciens vampires de sexe féminin, Héléna traque et assassine secrètement **Maria**, le Toréador de 5e génération le plus puissant de Chicago, usurpant sa place à l'Elysium à l'insu de tous [332, 334].
+
+---
+
+## VI. CHRONOLOGIE SYNTHÉTIQUE (LES REPÈRES DU CONTEUR)
+
+| Date | Événement Clé | Conséquences Secrètes / Coulisses du Jyhad |
+| :--- | :--- | :--- |
+| **1700** | Menele rejoint les Indiens des Plaines [120]. | Début de sa quête de Golconde loin de l'Europe [120]. |
+| **1820** | Héléna retrouve sa piste à Fort Dearborn [120]. | Menele est forcé de s'allier au Chef Faucon Noir [120]. |
+| **1832** | Défaite des Indiens de Faucon Noir [121]. | Affrontement direct : torpeur mutuelle de Menele et Héléna [121]. |
+| **1833** | Fondation de Chicago [121]. | **Maxwell** (Brujah) s'empare du pouvoir et devient Prince [96, 121]. |
+| **1871** | **Grand Incendie de Chicago** (*Nuit du Diable*) [121]. | Allumé par Maureen O'Leary (Malkavienne) [311]. **Lodin** renverse Maxwell [98, 121]. |
+| **1894** | Grève générale chez Pullman [101, 121]. | Edgar Drummond fait intervenir l'armée fédérale sans l'avis de Lodin [101]. |
+| **1906** | Lodin Étreint le syndicaliste Tommy Hinds [357]. | Balthazar trahit les Anarchs ; Lodin prend le contrôle des syndicats [121]. |
+| **1919** | **Fondation de l'Elysium** de Chicago [121]. | Première réunion des Primogènes à l'Orchestra Hall pour brider Lodin [102, 103, 121]. |
+| **1921** | Début de **l'Interdiction de Gary** [121]. | Horatio Ballard et Al Capone détruisent l'économie locale de Gary [104]. |
+| **1966** | **Nuits de Furie** [121]. | Balthazar assassine deux Brujahs dans Lincoln Park [109]. |
+| **1968** | Affrontements de la Convention Démocrate [121]. | Lodin et la police massacrent les Anarchs en direct à la télévision [112]. |
+| **1973** | Le Mystère du Zoo [121]. | Rosa Hernandez ("Rose") massacre des voleurs d'animaux au Lincoln Park Zoo [115]. |
+| **1983** | Début des **Guerres du Conseil** [121]. | Harold Washington est élu maire ; ascension de Maldavis soutenue par Critias [117, 121, 295]. |
+| **1987** | Fin de la rébellion de Maldavis [118]. | Mort du maire Washington [121]. **Éveil d'Héléna** et assassinat de Maria [121, 334]. |
+| **2026** | **Nuits Modernes (Aujourd'hui)** | Enquête sur la mort de Ruiz Verde [1]. Émergence de PRISM [2] et du Sabbat à Pilsen. |
+
+---
+*Ce document est la propriété exclusive des Cartographes de la SchreckNet. Toute reproduction ou transmission non autorisée sera punie par une visite définitive du Shérif.*
+# ==============================================================================
