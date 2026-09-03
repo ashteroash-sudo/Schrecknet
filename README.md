@@ -43,6 +43,7 @@ Le site n'envoie à l'IA que les fichiers dont le mot-clé a été prononcé par
 
 - **Le site répond "Clé API Gemini manquante"** → la variable d'environnement n'est pas configurée sur Vercel (Project > Settings > Environment Variables), ou il faut redéployer après l'avoir ajoutée (bouton "Redeploy" dans l'onglet Deployments).
 - **Le site répond "Erreur de l'API Gemini"** → regarde le message précis, en général une clé invalide ou un quota dépassé.
+- **"Quota gratuit temporairement épuisé"** → le palier gratuit de l'API a un plafond de requêtes par minute assez bas (utile pour tester seul, limitant si plusieurs joueurs tapent vite en même temps). Ça se résorbe tout seul en quelques secondes. Si ça revient souvent en session, la solution est d'activer la facturation sur le projet Google Cloud lié à la clé API (dans Google AI Studio) — ça reste gratuit tant que le quota gratuit n'est pas dépassé, mais le plafond de requêtes devient beaucoup plus haut.
 - **Un mot-clé ne débloque rien** → vérifie qu'il est écrit à l'identique (sans accent piégeur) dans `config.json` ET dans ce que le joueur a tapé ; la comparaison se fait en minuscules mais ignore les fautes de frappe.
 
 ## Ce qu'il ne faut PAS faire
