@@ -127,6 +127,9 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         system_instruction: { parts: [{ text: instructionSysteme }] },
         contents,
+        generationConfig: {
+          thinkingConfig: { thinkingLevel: config.niveau_reflexion || 'low' },
+        },
       }),
     });
 
