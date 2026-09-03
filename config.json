@@ -1,7 +1,8 @@
 {
-  "_lisez_moi": "Pour changer le mot-clé entre deux sessions : modifiez sa valeur ci-dessous sur github.com (bouton crayon), validez (Commit changes). Vercel republie tout seul en ~1 minute. 'fichiers_toujours_connus' = du lore que le Nosferatu connaît en permanence, jamais verrouillé. 'mots_cles' = les vrais secrets, verrouillés tant que le mot-clé n'a pas été prononcé par un joueur. 'niveau_reflexion' = vitesse de réponse de l'IA : 'low' (rapide, recommandé pour du roleplay fluide) ou 'high' (plus lent, réfléchit davantage — à tester si les réponses manquent de finesse).",
+  "_lisez_moi": "Pour changer le mot-clé entre deux sessions : modifiez sa valeur ci-dessous sur github.com (bouton crayon), validez (Commit changes). Vercel republie tout seul en ~1 minute. 'fichiers_toujours_connus' = du lore que le Nosferatu connaît en permanence, jamais verrouillé. 'mots_cles' = les vrais secrets, verrouillés tant que le mot-clé n'a pas été prononcé par un joueur. 'commandes_regles' = raccourcis de règles (ex: taper 'regle combat' renvoie directement le texte exact de la règle de combat, sans improvisation de l'IA) — pour en ajouter une, dupliquez une ligne, changez la commande et le fichier dans contenu/regles/. 'niveau_reflexion' = vitesse de réponse de l'IA : 'low' (rapide, recommandé) ou 'high' (plus lent, réfléchit davantage).",
 
   "modele_gemini": "gemini-3.6-flash",
+  "modele_secours": "gemini-3.5-flash",
   "niveau_reflexion": "low",
 
   "fichiers_toujours_connus": ["pnj-notoires-chicago.txt", "historique-mascarade.txt"],
@@ -11,5 +12,17 @@
       "theme": "les indices concrets sur l'enquête en cours des joueurs",
       "fichiers": ["indices-joueurs.txt"]
     }
+  },
+
+  "commandes_regles": {
+    "regle base": "regles/base.txt",
+    "regle soif": "regles/soif.txt",
+    "regle volonté": "regles/volonte.txt",
+    "regle exaltation": "regles/exaltation.txt",
+    "regle combat": "regles/combat.txt",
+    "regle blessures": "regles/blessures.txt",
+    "regle humanité": "regles/humanite.txt",
+    "regle flétrissures": "regles/fletrissures.txt",
+    "regle remords": "regles/remords.txt"
   }
 }
