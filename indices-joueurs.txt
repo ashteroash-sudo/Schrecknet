@@ -1,0 +1,8 @@
+[Remplacez ce texte par votre contenu réel.]
+
+INDICES POUR LES JOUEURS
+
+- Indice 1 : ce qu'il révèle, à quel point de l'intrigue il se rattache.
+- Indice 2 : ce qu'il révèle, à quel point de l'intrigue il se rattache.
+
+Astuce : si un mot-clé doit débloquer plusieurs indices à la fois, mettez-les tous dans ce même fichier — inutile de multiplier les petits fichiers.

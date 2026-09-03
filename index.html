@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SchreckNet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+  :root {
+    --vert: #33ff66;
+    --vert-terne: #1a8f3c;
+    --fond: #050805;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--fond);
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--vert);
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  /* scanlines + vignette légère, sans surcharger */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(51,255,102,0.035) 0px,
+      rgba(51,255,102,0.035) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+    z-index: 5;
+  }
+
+  header {
+    border-bottom: 1px solid var(--vert-terne);
+    padding: 14px 16px;
+    text-shadow: 0 0 6px rgba(51,255,102,0.6);
+    flex-shrink: 0;
+  }
+
+  header .titre {
+    font-size: 18px;
+    letter-spacing: 3px;
+  }
+
+  header .sous-titre {
+    font-size: 11px;
+    color: var(--vert-terne);
+    margin-top: 4px;
+  }
+
+  .portrait {
+    position: relative;
+    flex-shrink: 0;
+    margin: 14px auto 0;
+    width: min(48vw, 210px);
+    aspect-ratio: 3 / 4;
+    background: #000;
+    border: 1px solid var(--vert-terne);
+    overflow: hidden;
+  }
+
+  .portrait::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(51,255,102,0.25);
+    pointer-events: none;
+  }
+
+  .portrait-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(15%) contrast(1.05) brightness(0.85);
+    opacity: 0.92;
+    display: block;
+  }
+
+  .portrait-label {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--vert-terne);
+    text-shadow: 0 0 4px rgba(51,255,102,0.5);
+  }
+
+  .badge {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    padding: 3px;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid var(--vert-terne);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 6px rgba(51,255,102,0.65));
+  }
+
+  #fil {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .msg {
+    max-width: 92%;
+    line-height: 1.5;
+    font-size: 14px;
+    white-space: pre-wrap;
+  }
+
+  .msg.joueur {
+    align-self: flex-end;
+    color: #b8ffcc;
+  }
+  .msg.joueur::before { content: "> "; color: var(--vert-terne); }
+
+  .msg.nosferatu {
+    align-self: flex-start;
+    text-shadow: 0 0 4px rgba(51,255,102,0.5);
+  }
+  .msg.nosferatu::before { content: "◈ "; }
+
+  .msg.systeme {
+    align-self: center;
+    color: var(--vert-terne);
+    font-size: 12px;
+  }
+
+  form {
+    display: flex;
+    border-top: 1px solid var(--vert-terne);
+    flex-shrink: 0;
+  }
+
+  input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--vert);
+    font-family: inherit;
+    font-size: 15px;
+    padding: 14px 16px;
+    caret-color: var(--vert);
+  }
+
+  input::placeholder { color: var(--vert-terne); }
+
+  button {
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--vert-terne);
+    color: var(--vert);
+    font-family: inherit;
+    padding: 0 20px;
+    cursor: pointer;
+    letter-spacing: 2px;
+  }
+  button:hover { background: rgba(51,255,102,0.08); }
+  button:disabled { color: var(--vert-terne); cursor: default; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--vert-terne); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="titre">SCHRECKNET</div>
+  <div class="sous-titre">connexion non chiffrée · relais inconnu · ne pas faire confiance</div>
+</header>
+
+<div class="portrait">
+  <video class="portrait-video" src="/avatar.webm" autoplay muted loop playsinline></video>
+  <div class="portrait-label">SIGNAL INSTABLE</div>
+  <img class="badge" src="/icon.png" alt="Sceau du clan Nosferatu">
+</div>
+
+<div id="fil"></div>
+
+<form id="formulaire">
+  <input id="champ" type="text" placeholder="écrire un message..." autocomplete="off">
+  <button type="submit" id="envoyer">ENVOYER</button>
+</form>
+
+<script>
+const fil = document.getElementById('fil');
+const formulaire = document.getElementById('formulaire');
+const champ = document.getElementById('champ');
+const boutonEnvoyer = document.getElementById('envoyer');
+
+const CLE_STOCKAGE = 'schrecknet-historique';
+let historique = [];
+try {
+  historique = JSON.parse(localStorage.getItem(CLE_STOCKAGE) || '[]');
+} catch (e) {
+  historique = [];
+}
+
+function ajouterMessage(role, texte) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + (role === 'user' ? 'joueur' : role === 'model' ? 'nosferatu' : 'systeme');
+  div.textContent = texte;
+  fil.appendChild(div);
+  fil.scrollTop = fil.scrollHeight;
+}
+
+function rejouerHistorique() {
+  fil.innerHTML = '';
+  if (historique.length === 0) {
+    ajouterMessage('systeme', 'connexion établie. quelqu\'un observe déjà.');
+  }
+  historique.forEach((m) => ajouterMessage(m.role, m.text));
+}
+
+rejouerHistorique();
+
+formulaire.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const texte = champ.value.trim();
+  if (!texte) return;
+
+  champ.value = '';
+  boutonEnvoyer.disabled = true;
+
+  historique.push({ role: 'user', text: texte });
+  ajouterMessage('user', texte);
+  localStorage.setItem(CLE_STOCKAGE, JSON.stringify(historique));
+
+  ajouterMessage('systeme', '...');
+
+  try {
+    const reponse = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ history: historique }),
+    });
+    const donnees = await reponse.json();
+
+    fil.removeChild(fil.lastChild); // enlève le "..."
+
+    if (!reponse.ok) {
+      ajouterMessage('systeme', 'erreur : ' + (donnees.erreur || 'inconnue'));
+    } else {
+      historique.push({ role: 'model', text: donnees.reply });
+      ajouterMessage('model', donnees.reply);
+      localStorage.setItem(CLE_STOCKAGE, JSON.stringify(historique));
+    }
+  } catch (err) {
+    fil.removeChild(fil.lastChild);
+    ajouterMessage('systeme', 'connexion perdue.');
+  }
+
+  boutonEnvoyer.disabled = false;
+  champ.focus();
+});
+</script>
+
+</body>
+</html>
