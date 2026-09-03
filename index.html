@@ -29,7 +29,22 @@
     padding: 0;
   }
 
-  /* scanlines + vignette légère, sans surcharger */
+  /* flash d'allumage au chargement, façon vieux poste qu'on démarre */
+  #allumage {
+    position: fixed;
+    inset: 0;
+    background: var(--vert);
+    z-index: 50;
+    pointer-events: none;
+    animation: allumage-anim 0.7s ease-out forwards;
+  }
+  @keyframes allumage-anim {
+    0%   { opacity: 1; transform: scaleY(1); }
+    55%  { opacity: 1; transform: scaleY(0.015); }
+    100% { opacity: 0; transform: scaleY(0.015); }
+  }
+
+  /* scanlines + scintillement CRT, sans surcharger */
   body::before {
     content: "";
     position: fixed;
@@ -43,6 +58,28 @@
       transparent 3px
     );
     z-index: 5;
+    animation: scintillement 7s infinite;
+  }
+  @keyframes scintillement {
+    0%, 100% { opacity: 1; }
+    48% { opacity: 1; }
+    50% { opacity: 0.75; }
+    52% { opacity: 1; }
+    78% { opacity: 1; }
+    80% { opacity: 0.9; }
+    82% { opacity: 1; }
+  }
+
+  /* glitch occasionnel sur toute la page */
+  body.glitch {
+    animation: glitch-anim 0.18s steps(2, end) 1;
+  }
+  @keyframes glitch-anim {
+    0%   { transform: translate(0,0);      filter: brightness(1)   hue-rotate(0deg); }
+    20%  { transform: translate(-3px,1px); filter: brightness(1.5) hue-rotate(8deg); }
+    40%  { transform: translate(3px,-2px); filter: brightness(0.8); }
+    60%  { transform: translate(-2px,1px); filter: brightness(1.3) hue-rotate(-6deg); }
+    100% { transform: translate(0,0);      filter: brightness(1); }
   }
 
   header {
@@ -50,6 +87,13 @@
     padding: 14px 16px;
     text-shadow: 0 0 6px rgba(51,255,102,0.6);
     flex-shrink: 0;
+  }
+
+  .entete-ligne {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   header .titre {
@@ -62,6 +106,18 @@
     color: var(--vert-terne);
     margin-top: 4px;
   }
+
+  .bouton-son {
+    background: transparent;
+    border: 1px solid var(--vert-terne);
+    color: var(--vert);
+    font-size: 14px;
+    padding: 4px 9px;
+    cursor: pointer;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .bouton-son:hover { background: rgba(51,255,102,0.08); }
 
   .portrait {
     position: relative;
@@ -113,6 +169,33 @@
     border: 1px solid var(--vert-terne);
     border-radius: 50%;
     filter: drop-shadow(0 0 6px rgba(51,255,102,0.65));
+  }
+
+  /* ticker de faux logs, façon contre-mesures anti-PRISM */
+  .ticker {
+    overflow: hidden;
+    white-space: nowrap;
+    height: 20px;
+    border-top: 1px solid var(--vert-terne);
+    border-bottom: 1px solid var(--vert-terne);
+    flex-shrink: 0;
+    background: rgba(0,0,0,0.3);
+  }
+  .ticker-piste {
+    display: flex;
+    width: max-content;
+    animation: defiler-ticker 40s linear infinite;
+  }
+  .ticker-piste span {
+    padding-right: 50px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--vert-terne);
+    line-height: 20px;
+  }
+  @keyframes defiler-ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
   #fil {
@@ -205,15 +288,28 @@
 </head>
 <body>
 
+<div id="allumage"></div>
+
 <header>
-  <div class="titre">SCHRECKNET</div>
-  <div class="sous-titre">connexion non chiffrée · relais inconnu · ne pas faire confiance</div>
+  <div class="entete-ligne">
+    <div>
+      <div class="titre">SCHRECKNET</div>
+      <div class="sous-titre">connexion non chiffrée · relais inconnu · ne pas faire confiance</div>
+    </div>
+    <button type="button" id="bouton-son" aria-label="Couper ou activer le son">🔊</button>
+  </div>
 </header>
 
 <div class="portrait">
   <video class="portrait-video" src="/avatar.webm" autoplay muted loop playsinline></video>
   <div class="portrait-label">SIGNAL INSTABLE</div>
   <img class="badge" src="/icon.png" alt="Sceau du clan Nosferatu">
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-piste">
+    <span id="ticker-texte-1"></span><span id="ticker-texte-2"></span>
+  </div>
 </div>
 
 <div id="fil"></div>
@@ -228,7 +324,138 @@ const fil = document.getElementById('fil');
 const formulaire = document.getElementById('formulaire');
 const champ = document.getElementById('champ');
 const boutonEnvoyer = document.getElementById('envoyer');
+const boutonSon = document.getElementById('bouton-son');
 
+const reduireMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- suppression du flash d'allumage ---------- */
+const allumage = document.getElementById('allumage');
+allumage.addEventListener('animationend', () => allumage.remove());
+setTimeout(() => allumage.remove(), 1000); // filet de sécurité
+
+/* ---------- glitch occasionnel ---------- */
+function declencherGlitch() {
+  if (!reduireMotion) {
+    document.body.classList.add('glitch');
+    setTimeout(() => document.body.classList.remove('glitch'), 200);
+  }
+  setTimeout(declencherGlitch, 15000 + Math.random() * 25000);
+}
+if (!reduireMotion) setTimeout(declencherGlitch, 8000 + Math.random() * 10000);
+
+/* ---------- ticker de faux logs anti-PRISM ---------- */
+const segmentsTicker = [
+  'DÉTECTION PRISM: BROUILLAGE ACTIF',
+  'ANALYSE TRAFIC: NÉGATIF',
+  'PARE-FEU FANTÔME: EN LIGNE',
+  'SIGNATURE EFFACÉE',
+  'ÉCOUTE DÉTECTÉE: CONTRE-MESURE ENGAGÉE',
+  'CHIFFREMENT RENOUVELÉ',
+  'NŒUD RELAIS INSTABLE',
+  'PAQUET REDIRIGÉ',
+];
+function hexAleatoire(n) {
+  let s = '';
+  for (let i = 0; i < n; i++) s += Math.floor(Math.random() * 16).toString(16).toUpperCase();
+  return s;
+}
+function genererLigneTicker() {
+  const nb = 5 + Math.floor(Math.random() * 3);
+  const parties = [];
+  for (let i = 0; i < nb; i++) {
+    const base = segmentsTicker[Math.floor(Math.random() * segmentsTicker.length)];
+    parties.push(base + ' [' + hexAleatoire(4) + ']');
+  }
+  return parties.join('   ·   ') + '   ·   ';
+}
+function rafraichirTicker() {
+  const texte = genererLigneTicker();
+  document.getElementById('ticker-texte-1').textContent = texte;
+  document.getElementById('ticker-texte-2').textContent = texte;
+}
+rafraichirTicker();
+setInterval(rafraichirTicker, 45000);
+
+/* ---------- son : bascule + bruit de clavier + bourdonnement de fond ---------- */
+let sonActif = localStorage.getItem('schrecknet-son') !== 'off';
+boutonSon.textContent = sonActif ? '🔊' : '🔇';
+
+let audioCtx = null;
+function obtenirAudioCtx() {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return null;
+  if (!audioCtx) audioCtx = new AC();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+function clicClavier() {
+  if (!sonActif) return;
+  const ctx = obtenirAudioCtx();
+  if (!ctx) return;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'square';
+  osc.frequency.value = 1000 + Math.random() * 900;
+  gain.gain.setValueAtTime(0.04, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.025);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + 0.03);
+}
+
+let intervalleClavier = null;
+function demarrerBruitClavier() {
+  clicClavier();
+  intervalleClavier = setInterval(clicClavier, 70 + Math.random() * 90);
+}
+function arreterBruitClavier() {
+  if (intervalleClavier) {
+    clearInterval(intervalleClavier);
+    intervalleClavier = null;
+  }
+}
+
+let bourdonnement = null;
+function demarrerBourdonnement() {
+  if (!sonActif || bourdonnement) return;
+  const ctx = obtenirAudioCtx();
+  if (!ctx) return;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'sine';
+  osc.frequency.value = 55;
+  gain.gain.value = 0.015;
+  osc.connect(gain).connect(ctx.destination);
+  osc.start();
+  bourdonnement = { osc, gain };
+}
+function arreterBourdonnement() {
+  if (bourdonnement) {
+    bourdonnement.osc.stop();
+    bourdonnement = null;
+  }
+}
+
+// démarre le bourdonnement dès la première interaction (contrainte des navigateurs)
+function demarrerAuPremierGeste() {
+  if (sonActif) demarrerBourdonnement();
+}
+window.addEventListener('pointerdown', demarrerAuPremierGeste, { once: true });
+window.addEventListener('keydown', demarrerAuPremierGeste, { once: true });
+
+boutonSon.addEventListener('click', () => {
+  sonActif = !sonActif;
+  localStorage.setItem('schrecknet-son', sonActif ? 'on' : 'off');
+  boutonSon.textContent = sonActif ? '🔊' : '🔇';
+  if (sonActif) demarrerBourdonnement();
+  else {
+    arreterBourdonnement();
+    arreterBruitClavier();
+  }
+});
+
+/* ---------- historique de conversation ---------- */
 const CLE_STOCKAGE = 'schrecknet-historique';
 let historique = [];
 try {
@@ -237,7 +464,24 @@ try {
   historique = [];
 }
 
-function ajouterMessage(role, texte) {
+function revelerTexte(element, texte) {
+  const total = texte.length;
+  const duree = Math.min(2200, Math.max(500, total * 16));
+  const pas = Math.max(1, Math.round(total / (duree / 16)));
+  let i = 0;
+  const minuteur = setInterval(() => {
+    i += pas;
+    if (i >= total) {
+      element.textContent = texte;
+      clearInterval(minuteur);
+    } else {
+      element.textContent = texte.slice(0, i);
+    }
+    fil.scrollTop = fil.scrollHeight;
+  }, 16);
+}
+
+function ajouterMessage(role, texte, animer) {
   const div = document.createElement('div');
   div.className = 'msg ' + (role === 'user' ? 'joueur' : role === 'model' ? 'nosferatu' : 'systeme');
 
@@ -249,10 +493,15 @@ function ajouterMessage(role, texte) {
   }
 
   const contenu = document.createElement('div');
-  contenu.textContent = texte;
   div.appendChild(contenu);
-
   fil.appendChild(div);
+
+  if (animer && role === 'model' && !reduireMotion) {
+    revelerTexte(contenu, texte);
+  } else {
+    contenu.textContent = texte;
+  }
+
   fil.scrollTop = fil.scrollHeight;
 }
 
@@ -271,6 +520,8 @@ formulaire.addEventListener('submit', async (e) => {
   const texte = champ.value.trim();
   if (!texte) return;
 
+  if (sonActif) demarrerBourdonnement();
+
   champ.value = '';
   boutonEnvoyer.disabled = true;
 
@@ -279,6 +530,7 @@ formulaire.addEventListener('submit', async (e) => {
   localStorage.setItem(CLE_STOCKAGE, JSON.stringify(historique));
 
   ajouterMessage('systeme', '...');
+  demarrerBruitClavier();
 
   try {
     const reponse = await fetch('/api/chat', {
@@ -288,16 +540,18 @@ formulaire.addEventListener('submit', async (e) => {
     });
     const donnees = await reponse.json();
 
+    arreterBruitClavier();
     fil.removeChild(fil.lastChild); // enlève le "..."
 
     if (!reponse.ok) {
       ajouterMessage('systeme', 'erreur : ' + (donnees.erreur || 'inconnue'));
     } else {
       historique.push({ role: 'model', text: donnees.reply });
-      ajouterMessage('model', donnees.reply);
+      ajouterMessage('model', donnees.reply, true);
       localStorage.setItem(CLE_STOCKAGE, JSON.stringify(historique));
     }
   } catch (err) {
+    arreterBruitClavier();
     fil.removeChild(fil.lastChild);
     ajouterMessage('systeme', 'connexion perdue.');
   }
