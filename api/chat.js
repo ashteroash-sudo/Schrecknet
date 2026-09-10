@@ -11,8 +11,8 @@ function lireConfig() {
   return JSON.parse(fs.readFileSync(chemin, 'utf8'));
 }
 
-// Met en minuscules ET retire les accents, pour que "regle humanite" et
-// "règle Humanité" soient reconnus comme identiques.
+// Met en minuscules ET retire les accents, pour que les mots-clés soient
+// reconnus quelle que soit la façon dont ils sont tapés.
 function normaliser(texte) {
   return (texte || '')
     .toLowerCase()
@@ -83,7 +83,7 @@ module.exports = async function handler(req, res) {
   }
 
   // 1) On rassemble tout ce que les joueurs ont tapé depuis le début de la session,
-  //    pour repérer si un mot-clé secret a été prononcé à un moment ou un autre.
+  // pour repérer si un mot-clé secret a été prononcé à un moment ou un autre.
   const texteJoueurs = normaliser(
     history
       .filter((m) => m.role === 'user')
@@ -99,31 +99,6 @@ module.exports = async function handler(req, res) {
       (entree.fichiers || []).forEach((f) => fichiersDebloques.add(f));
     } else if (entree.theme) {
       themesVerrouilles.push(entree.theme);
-    }
-  }
-
-  // 1bis) Commandes de règles : uniquement recherchées dans le DERNIER message du
-  //       joueur (pas tout l'historique), et sans effet de gatekeeping — juste
-  //       un renvoi direct et fidèle du texte de règle demandé.
-  const dernierMessageJoueur = [...history].reverse().find((m) => m.role === 'user');
-  const texteDernierMessage = normaliser(dernierMessageJoueur ? dernierMessageJoueur.text : '');
-
-  // Si le joueur tape juste "regle" ou "regles" (rien d'autre) : on répond
-  // NOUS-MÊMES avec la liste exacte, sans passer par l'IA — aucun risque
-  // qu'une commande soit mal recopiée ou inventée.
-  if (texteDernierMessage === normaliser('regle') || texteDernierMessage === normaliser('regles')) {
-    const commandes = Object.keys(config.commandes_regles || {});
-    const texte =
-      "Oui, oui... le Grêlé connaît ces commandes-là, mon petit :\n" +
-      commandes.map((c) => `- ${c}`).join('\n');
-    res.status(200).json({ reply: texte });
-    return;
-  }
-
-  const fichiersReglesDemandes = new Set();
-  for (const [commande, fichier] of Object.entries(config.commandes_regles || {})) {
-    if (texteDernierMessage.includes(normaliser(commande))) {
-      fichiersReglesDemandes.add(fichier);
     }
   }
 
@@ -157,27 +132,12 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // 3bis) Règle(s) demandée(s) explicitement dans le dernier message
-  let blocsRegles = '';
-  for (const nomFichier of fichiersReglesDemandes) {
-    try {
-      const contenu = lireFichier(nomFichier);
-      blocsRegles += `\n\n--- Règle demandée (${nomFichier}) ---\n${contenu}`;
-    } catch (e) {
-      // fichier manquant : on l'ignore silencieusement, pas de crash
-    }
-  }
-
   const blocThemesVerrouilles =
     themesVerrouilles.length > 0
       ? `\n\nSujets sensibles NON débloqués pour l'instant (tu sais qu'ils existent, mais tu n'en connais pas le contenu tant qu'ils ne sont pas débloqués ci-dessous) :\n` +
         themesVerrouilles.map((t) => `- ${t}`).join('\n') +
         `\nSi une question touche un de ces sujets, ne dis jamais platement "je ne sais pas" : élude, marchande, réclame quelque chose en échange, ou détourne la conversation à ta manière — reste en personnage. Pour tout le reste (questions générales sur le monde, PNJ notoires publics, ambiance, etc.), tu réponds librement.`
       : '';
-
-  const instructionRegles = blocsRegles
-    ? `\n\nUne règle précise du jeu est demandée. Pour cette réponse uniquement : réponds de façon CLAIRE et FIDÈLE au texte fourni ci-dessous, sans arrondir ni modifier un seul chiffre. Tu peux garder une pointe de ta voix habituelle, mais la clarté prime largement sur le personnage cette fois-ci. Termine si pertinent par une note du style "...pour le reste, mon petit, c'est ton conteur qui décide.". Voici le texte de règle exact :${blocsRegles}`
-    : '';
 
   const instructionSysteme =
     personnage +
@@ -187,8 +147,7 @@ module.exports = async function handler(req, res) {
     blocThemesVerrouilles +
     (blocsDebloques
       ? `\n\nVoici les informations que tu es autorisé à révéler à ce stade, si la conversation s'y prête :${blocsDebloques}`
-      : '') +
-    instructionRegles;
+      : '');
 
   // 4) On construit la conversation pour Gemini (uniquement les tours user/model)
   const contents = history
@@ -220,6 +179,7 @@ module.exports = async function handler(req, res) {
     if (!resultat.ok) {
       const messageBrut = resultat.donnees?.error?.message || '';
       const correspondanceAttente = messageBrut.match(/retry in ([\d.]+)s/i);
+
       if (resultat.statut === 429 && correspondanceAttente) {
         const secondes = Math.ceil(parseFloat(correspondanceAttente[1]));
         res.status(502).json({
@@ -227,12 +187,14 @@ module.exports = async function handler(req, res) {
         });
         return;
       }
+
       if (resultat.statut === 429) {
         res.status(502).json({
           erreur: 'Quota de l\'API Gemini dépassé pour le moment. Réessaie dans une minute ; si ça revient souvent en session, voir la note sur la limite gratuite dans le README.',
         });
         return;
       }
+
       res.status(502).json({
         erreur: `Erreur de l'API Gemini : ${messageBrut || resultat.statut}`,
       });
