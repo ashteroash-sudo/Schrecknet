@@ -302,6 +302,72 @@
     100% { filter: brightness(0); transform: translate(0,0); }
   }
 
+  /* ---------- EFFACEMENT DÉFINITIF (déclenché par le prochain message) ---------- */
+
+  body.effacement {
+    animation: effacement-anim 2.4s ease-in-out forwards;
+  }
+  @keyframes effacement-anim {
+    0%   { filter: brightness(1) saturate(1) contrast(1); transform: translate(0,0) scale(1) skew(0deg,0deg); }
+    8%   { filter: brightness(1.3) saturate(2) contrast(1.4); transform: translate(2px,-1px) scale(1.01) skew(1deg,0deg); }
+    16%  { filter: brightness(0.6) saturate(3); transform: translate(-4px,2px) scale(0.99) skew(-1deg,0.5deg); }
+    24%  { filter: brightness(1.6) saturate(0.2) contrast(1.8) hue-rotate(15deg); transform: translate(3px,0) scale(1.02) skew(2deg,-1deg); }
+    32%  { filter: brightness(0.3) saturate(4); transform: translate(-3px,-3px) scale(0.98) skew(-2deg,1deg); }
+    40%  { filter: brightness(1.8) contrast(2) saturate(0.1); transform: translate(4px,2px) scale(1.03) skew(1deg,2deg); }
+    48%  { filter: brightness(0.2) saturate(5); transform: translate(-5px,1px) scale(0.97) skew(-3deg,-1deg); }
+    56%  { filter: brightness(1.4) contrast(2.2); transform: translate(2px,-2px) scale(1.04) skew(2deg,0deg); }
+    64%  { filter: brightness(0.15); transform: translate(-3px,3px) scale(0.96) skew(-1deg,2deg); }
+    72%  { filter: brightness(1.2) saturate(3); transform: translate(1px,-1px) scale(1.02); }
+    80%  { filter: brightness(0.1); transform: translate(0,0) scale(1); }
+    92%  { filter: brightness(4) saturate(0) contrast(3); transform: scale(1.06); }
+    100% { filter: brightness(1) saturate(0) contrast(1); transform: scale(1); opacity: 0; }
+  }
+
+  /* cache le formulaire tout en le laissant fonctionnel (pour la commande cachée) */
+  .oculte-404 {
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+  }
+
+  /* fausse page d'erreur façon déploiement statique, sobre et blanche */
+  body.page-404 {
+    background: #fff !important;
+    animation: none !important;
+    filter: none !important;
+  }
+  body.page-404::before { display: none !important; }
+
+  #page-404 {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    z-index: 999;
+  }
+  .page-404-bloc {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .page-404-code {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+  }
+  .page-404-trait {
+    width: 1px;
+    height: 17px;
+    background: #ccc;
+  }
+  .page-404-texte {
+    font-size: 14px;
+    color: #000;
+  }
+
   form {
     display: flex;
     border-top: 1px solid var(--vert-terne);
@@ -380,25 +446,22 @@
 
    ARMER_EFFACEMENT = true  → le TOUT PROCHAIN message envoyé par
    n'importe qui déclenche la destruction du réseau (au lieu d'une
-   réponse de l'IA). Reste armé en continu tant que le site n'a pas
-   déjà été "tué" une fois dans ce navigateur.
+   réponse de l'IA) : écran qui sature, se déforme, tremble de plus
+   en plus fort, flash blanc, puis atterrissage sur une fausse page
+   d'erreur 404 — comme si le site n'avait jamais existé.
 
    Pour tester sans risque : tape "reset-grele" dans le champ de
-   message, à tout moment (même après la destruction) — ça efface
-   juste le statut "mort" du site, sans toucher à l'historique de
-   conversation réel. Tu peux déclencher/annuler autant de fois que
-   tu veux en répétition.
-
-   MESSAGE_FINAL = le tout dernier message affiché, à personnaliser.
+   message, à tout moment — même sur la page 404 (le champ reste
+   actif mais invisible ; un clic n'importe où sur la page lui
+   redonne le focus). Ça efface juste le statut "mort" du site,
+   sans toucher à l'historique de conversation réel. Répétable à
+   volonté pendant tes tests.
    ============================================================ */
 const ARMER_EFFACEMENT = true;
 const CLE_EFFACEMENT = 'schrecknet-efface';
-const MESSAGE_FINAL =
-  "ils m'ont trouvé...\n" +
-  "effacement du réseau en cours...\n" +
-  "ne cherchez plus. 13_Grê13 ne répondra plus.\n\n" +
-  "connexion terminée.";
 /* ============================================================ */
+
+let siteMort = false;
 
 const fil = document.getElementById('fil');
 const formulaire = document.getElementById('formulaire');
@@ -415,6 +478,7 @@ setTimeout(() => allumage.remove(), 1000); // filet de sécurité
 
 /* ---------- glitch occasionnel ---------- */
 function declencherGlitch() {
+  if (siteMort) return;
   if (!reduireMotion) {
     document.body.classList.add('glitch');
     setTimeout(() => document.body.classList.remove('glitch'), 200);
@@ -454,7 +518,7 @@ function rafraichirTicker() {
   document.getElementById('ticker-texte-2').textContent = texte;
 }
 rafraichirTicker();
-setInterval(rafraichirTicker, 45000);
+const intervalTicker = setInterval(rafraichirTicker, 45000);
 
 /* ---------- son : bascule + bruit de clavier + bourdonnement de fond ---------- */
 let sonActif = localStorage.getItem('schrecknet-son') !== 'off';
@@ -613,6 +677,9 @@ function rejouerHistorique() {
 /* ---------- effacement définitif du réseau ---------- */
 
 async function lancerEffacement() {
+  siteMort = true;
+  clearInterval(intervalTicker);
+
   // le dernier message reste visible un court instant avant que tout parte en vrille
   await new Promise((r) => setTimeout(r, 900));
 
@@ -623,49 +690,55 @@ async function lancerEffacement() {
   // les messages disparaissent un par un, du plus récent au plus ancien
   const messages = Array.from(fil.children);
   messages.reverse().forEach((m, i) => {
-    setTimeout(() => m.classList.add('disparu'), 150 * i);
+    setTimeout(() => m.classList.add('disparu'), 120 * i);
   });
 
-  await new Promise((r) => setTimeout(r, 1800));
+  await new Promise((r) => setTimeout(r, reduireMotion ? 200 : 2400));
 
-  afficherReseauMort(false);
+  afficherErreur404();
 }
 
-function afficherReseauMort(instantane) {
+function afficherErreur404() {
   document.body.classList.remove('effacement');
   document.body.style.filter = '';
-  fil.innerHTML = '';
 
-  const entete = document.querySelector('.titre');
-  if (entete) entete.textContent = 'SCHRECKNET — HORS LIGNE';
-  const sousTitre = document.querySelector('.sous-titre');
-  if (sousTitre) sousTitre.textContent = 'signal perdu · aucune réponse';
-  const portrait = document.querySelector('.portrait');
-  if (portrait) portrait.style.display = 'none';
-  const ticker = document.querySelector('.ticker');
-  if (ticker) ticker.style.display = 'none';
+  // cache l'interface normale ; le formulaire reste fonctionnel mais invisible,
+  // pour que la commande cachée de réinitialisation continue de marcher
+  document.querySelector('header').style.display = 'none';
+  document.querySelector('.portrait').style.display = 'none';
+  document.querySelector('.ticker').style.display = 'none';
+  fil.style.display = 'none';
+  formulaire.classList.add('oculte-404');
+  champ.disabled = false;
+  boutonEnvoyer.disabled = false;
 
-  const div = document.createElement('div');
-  div.className = 'msg nosferatu';
-  const contenu = document.createElement('div');
-  div.appendChild(contenu);
-  fil.appendChild(div);
-
-  if (!instantane && !reduireMotion) {
-    revelerTexte(contenu, MESSAGE_FINAL);
-  } else {
-    contenu.textContent = MESSAGE_FINAL;
+  if (!document.getElementById('page-404')) {
+    const overlay = document.createElement('div');
+    overlay.id = 'page-404';
+    overlay.innerHTML =
+      '<div class="page-404-bloc">' +
+        '<div class="page-404-code">404</div>' +
+        '<div class="page-404-trait"></div>' +
+        '<div class="page-404-texte">This page could not be found.</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
   }
+  document.body.classList.add('page-404');
 
-  champ.value = '';
-  champ.disabled = true;
-  champ.placeholder = 'connexion perdue.';
-  boutonEnvoyer.disabled = true;
+  champ.focus();
 }
+
+// un clic n'importe où sur la page 404 redonne le focus au champ caché,
+// pour pouvoir taper "reset-grele" à l'aveugle sans viser quoi que ce soit
+document.addEventListener('click', () => {
+  if (siteMort) champ.focus();
+});
 
 /* ---------- état au chargement ---------- */
 if (localStorage.getItem(CLE_EFFACEMENT) === 'oui') {
-  afficherReseauMort(true);
+  siteMort = true;
+  clearInterval(intervalTicker);
+  afficherErreur404();
 } else {
   rejouerHistorique();
 }
@@ -694,8 +767,6 @@ formulaire.addEventListener('submit', async (e) => {
   // ---- Déclenchement de l'effacement définitif (le prochain message, quel qu'il soit) ----
   if (ARMER_EFFACEMENT) {
     champ.value = '';
-    champ.disabled = true;
-    boutonEnvoyer.disabled = true;
     ajouterMessage('user', texte);
     localStorage.setItem(CLE_EFFACEMENT, 'oui');
     await lancerEffacement();
