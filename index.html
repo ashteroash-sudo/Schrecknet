@@ -367,15 +367,18 @@
     font-size: 14px;
     color: #000;
   }
+  .page-404-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
   .page-404-indice {
-    position: absolute;
-    bottom: 28px;
-    left: 0;
-    right: 0;
     text-align: center;
-    font-size: 11px;
-    color: #bbb;
+    font-size: 15px;
+    color: #555;
     letter-spacing: 0.3px;
+    padding: 0 20px;
   }
 
   /* ---------- TESTAMENT (déclenché par "chou-fleur" sur la page 404) ---------- */
@@ -823,12 +826,14 @@ function afficherErreur404() {
     const overlay = document.createElement('div');
     overlay.id = 'page-404';
     overlay.innerHTML =
-      '<div class="page-404-bloc">' +
-        '<div class="page-404-code">404</div>' +
-        '<div class="page-404-trait"></div>' +
-        '<div class="page-404-texte">This page could not be found.</div>' +
-      '</div>' +
-      '<div class="page-404-indice">si tu es mon légume préféré, écris ton nom</div>';
+      '<div class="page-404-wrap">' +
+        '<div class="page-404-bloc">' +
+          '<div class="page-404-code">404</div>' +
+          '<div class="page-404-trait"></div>' +
+          '<div class="page-404-texte">This page could not be found.</div>' +
+        '</div>' +
+        '<div class="page-404-indice">si tu es mon légume préféré, écris ton nom</div>' +
+      '</div>';
     document.body.appendChild(overlay);
   }
   document.body.classList.add('page-404');
