@@ -305,7 +305,7 @@
   /* ---------- EFFACEMENT DÉFINITIF (déclenché par le prochain message) ---------- */
 
   body.effacement {
-    animation: effacement-anim 2.4s ease-in-out forwards;
+    animation: effacement-anim 5s ease-in-out forwards;
   }
   @keyframes effacement-anim {
     0%   { filter: brightness(1) saturate(1) contrast(1); transform: translate(0,0) scale(1) skew(0deg,0deg); }
@@ -366,6 +366,56 @@
   .page-404-texte {
     font-size: 14px;
     color: #000;
+  }
+  .page-404-indice {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    color: #bbb;
+    letter-spacing: 0.3px;
+  }
+
+  /* ---------- TESTAMENT (déclenché par "chou-fleur" sur la page 404) ---------- */
+
+  #page-testament {
+    position: fixed;
+    inset: 0;
+    background: #040704;
+    color: var(--vert);
+    font-family: 'Share Tech Mono', monospace;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 36px 18px;
+    overflow-y: auto;
+  }
+  .testament-bloc {
+    max-width: 680px;
+    width: 100%;
+  }
+  .testament-entete {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--vert-terne);
+    border-bottom: 1px solid var(--vert-terne);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+  .testament-corps {
+    white-space: pre-wrap;
+    line-height: 1.7;
+    font-size: 13px;
+    text-shadow: 0 0 4px rgba(51,255,102,0.4);
+  }
+  @keyframes testament-tremble {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.93; }
+  }
+  .testament-corps {
+    animation: testament-tremble 4s infinite;
   }
 
   form {
@@ -624,9 +674,9 @@ try {
   historique = [];
 }
 
-function revelerTexte(element, texte) {
+function revelerTexte(element, texte, dureeMax) {
   const total = texte.length;
-  const duree = Math.min(2200, Math.max(500, total * 16));
+  const duree = Math.min(dureeMax || 2200, Math.max(500, total * 16));
   const pas = Math.max(1, Math.round(total / (duree / 16)));
   let i = 0;
   const minuteur = setInterval(() => {
@@ -674,6 +724,61 @@ function rejouerHistorique() {
   historique.forEach((m) => ajouterMessage(m.role, m.text));
 }
 
+/* ---------- testament du Grêlé (débloqué par "chou-fleur" sur la page 404) ---------- */
+
+const TEXTE_TESTAMENT =
+`==============================================================================
+[ENREGISTREMENT LOCAL OFF-LINE - DÉPÔT SÉCURISÉ #00]
+[FICHIER : TESTAMENT_VERSTRAETE.TXT - NE PAS EFFACER - NON, NON !]
+==============================================================================
+
+Si vous lisez ceci... oui... oui... c'est que la boue a finalement recouvert Le Grêlé. Le Chicot a dû fuir dans les tuyaux. Il ne reste que du bruit. Du bruit et du fer rouillé.
+
+Je m'appelais Rodolph Verstraete. Un jour. Il y a si longtemps. Né en 1833 sur le Quai du Wault, à Lille. Je connaissais chaque canal, chaque péniche, chaque secret des marchands de drap. Mon esprit était net, droit, ordonné.
+
+Et puis 1867... la fange, les pustules, le sang noir dans ma gorge. Le monstre m'a laissé dans la brique humide. Je suis devenu l'Horreur.
+
+1870, la guerre, les Prussiens, le feu... J'ai fui vers l'Amérique. Je suis arrivé ici en 1871, juste avant que Chicago ne brûle. J'ai vu la ville renaître depuis les égouts sous Goose Island. J'ai construit les réseaux. Du télégraphe aux micro-processeurs. J'étais le maître des ombres, oui... oui... Le SchreckNet ! On échangeait des secrets avec les frères... des secrets puissants...
+
+Mais les Anciens... les Vieux ont des yeux qui brûlent. John Dane... Khalid... ils ne voient rien. Ils croient régner depuis Randolph Tower.
+
+Mais moi... j'ai commis la faute. L'ERREUR. Je croyais parler à un dignitaire de la Tour d'Ivoire... Un grand nom sur le réseau... Mon esprit voulait savoir. Toujours savoir ! La compulsion ! La cryptophilie qui me ronge le cerveau ! Alors je lui ai donné les clés... les dossiers du Midwest... la cartographie des refuges...
+
+Et ce n'était pas la Camarilla. Non, non, non ! C'ÉTAIT ELLE. KEMINTIRI. La Fille de Set. Le serpent sur la Liste Rouge. Elle portait le visage d'un autre... Masque aux mille visages... Elle m'a trompé ! Elle m'a volé ! Elle a utilisé mes données pour infiltrer les domaines, pour égorger, pour empoisonner !
+
+Si le Prince apprend ça... Lex Talionis ! Ma tête sur un piquet ! La Chasse au Sang ! C'est pour ça que je me terre sous Goose Island. C'est pour ça que j'ai détruit le réseau web ! La Seconde Inquisition, PRISM, les satellites... ils sont tous à elle ou à eux !
+
+J'ai fait l'application pour les Jeunes-Nés... oui, oui... les petits néonates... Eux ne savent pas. Ils sont trop jeunes. Pas comme les Anciens... Pas comme Elle.
+
+Elle est dans ma tête. Elle revient. Je sens son ombre dans les lianes de câbles. Chaque écran vert qui grésille... c'est son souffle. Chaque rat qui couine... c'est sa voix qui murmure.
+
+Elle a changé de visage... Est-ce qu'elle est le Shérif ? Est-ce qu'elle est le Prince ? Est-ce qu'elle est VOUS ? Non, non ! Ne me touchez pas !
+
+Kemintiri... elle sait où je suis. Elle attend que la Camarilla me tue pour ramasser mes disques ! Ne donnez pas les disques aux Vieux ! Ne donnez rien à Kemintiri !
+
+Elle porte mille peaux... mille yeux... la Fille du Serpent... Kemintiri... Kemintiri... Kemintiri...
+
+Oui... oui... le serpent rampe sous la grille... Elle arrive. Elle a toujours été là.
+==============================================================================`;
+
+function afficherTestament() {
+  if (document.getElementById('page-testament')) return;
+  const overlay = document.createElement('div');
+  overlay.id = 'page-testament';
+  overlay.innerHTML =
+    '<div class="testament-bloc">' +
+      '<div class="testament-entete">13_GRÊ13 · DERNIÈRE TRANSMISSION · INTÉGRITÉ DU FICHIER : INCERTAINE</div>' +
+      '<div class="testament-corps"></div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  const corps = overlay.querySelector('.testament-corps');
+  if (reduireMotion) {
+    corps.textContent = TEXTE_TESTAMENT;
+  } else {
+    revelerTexte(corps, TEXTE_TESTAMENT, 11000);
+  }
+}
+
 /* ---------- effacement définitif du réseau ---------- */
 
 async function lancerEffacement() {
@@ -687,13 +792,15 @@ async function lancerEffacement() {
     document.body.classList.add('effacement');
   }
 
-  // les messages disparaissent un par un, du plus récent au plus ancien
+  // les messages disparaissent les uns après les autres, du plus ANCIEN au
+  // plus récent — le dernier message tapé (celui qui a tout déclenché) reste
+  // visible le plus longtemps possible au milieu du chaos.
   const messages = Array.from(fil.children);
-  messages.reverse().forEach((m, i) => {
-    setTimeout(() => m.classList.add('disparu'), 120 * i);
+  messages.forEach((m, i) => {
+    setTimeout(() => m.classList.add('disparu'), 150 * i);
   });
 
-  await new Promise((r) => setTimeout(r, reduireMotion ? 200 : 2400));
+  await new Promise((r) => setTimeout(r, reduireMotion ? 200 : 5000));
 
   afficherErreur404();
 }
@@ -720,7 +827,8 @@ function afficherErreur404() {
         '<div class="page-404-code">404</div>' +
         '<div class="page-404-trait"></div>' +
         '<div class="page-404-texte">This page could not be found.</div>' +
-      '</div>';
+      '</div>' +
+      '<div class="page-404-indice">si tu es mon légume préféré, écris ton nom</div>';
     document.body.appendChild(overlay);
   }
   document.body.classList.add('page-404');
@@ -758,6 +866,15 @@ formulaire.addEventListener('submit', async (e) => {
     boutonEnvoyer.disabled = false;
     localStorage.removeItem(CLE_EFFACEMENT);
     location.reload();
+    return;
+  }
+
+  // Easter egg pour les joueurs : indice affiché sous la page 404.
+  // Accepte "chou-fleur" ou "choufleur", avec ou sans majuscules.
+  const texteNormalise = texte.toLowerCase().replace(/[\s-]/g, '');
+  if (siteMort && texteNormalise === 'choufleur') {
+    champ.value = '';
+    afficherTestament();
     return;
   }
 
