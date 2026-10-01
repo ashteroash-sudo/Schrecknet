@@ -242,6 +242,11 @@
     line-height: 1.5;
     font-size: 14px;
     white-space: pre-wrap;
+    transition: opacity 0.4s ease;
+  }
+
+  .msg.disparu {
+    opacity: 0;
   }
 
   .msg .expediteur {
@@ -279,6 +284,24 @@
     font-size: 12px;
   }
 
+  /* ---------- EFFACEMENT DÉFINITIF (déclenché par le prochain message) ---------- */
+
+  body.effacement {
+    animation: effacement-anim 1.8s ease-in-out forwards;
+  }
+  @keyframes effacement-anim {
+    0%   { filter: brightness(1) contrast(1) hue-rotate(0deg); transform: translate(0,0); }
+    10%  { filter: brightness(1.4) contrast(1.3) hue-rotate(10deg); transform: translate(2px,-1px); }
+    20%  { filter: brightness(0.6); transform: translate(-3px,2px); }
+    30%  { filter: brightness(1.6) hue-rotate(-12deg); transform: translate(3px,0); }
+    40%  { filter: brightness(0.4); transform: translate(-2px,-2px); }
+    50%  { filter: brightness(1.8) contrast(1.5); transform: translate(2px,2px); }
+    60%  { filter: brightness(0.3); transform: translate(-4px,1px); }
+    70%  { filter: brightness(1.2); transform: translate(1px,-1px); }
+    85%  { filter: brightness(0.2); transform: translate(0,0); }
+    100% { filter: brightness(0); transform: translate(0,0); }
+  }
+
   form {
     display: flex;
     border-top: 1px solid var(--vert-terne);
@@ -298,6 +321,8 @@
   }
 
   input::placeholder { color: var(--vert-terne); }
+
+  input:disabled { opacity: 0.5; }
 
   button {
     background: transparent;
@@ -350,6 +375,31 @@
 </form>
 
 <script>
+/* ============================================================
+   EFFACEMENT DÉFINITIF — à régler avant la session.
+
+   ARMER_EFFACEMENT = true  → le TOUT PROCHAIN message envoyé par
+   n'importe qui déclenche la destruction du réseau (au lieu d'une
+   réponse de l'IA). Reste armé en continu tant que le site n'a pas
+   déjà été "tué" une fois dans ce navigateur.
+
+   Pour tester sans risque : tape "reset-grele" dans le champ de
+   message, à tout moment (même après la destruction) — ça efface
+   juste le statut "mort" du site, sans toucher à l'historique de
+   conversation réel. Tu peux déclencher/annuler autant de fois que
+   tu veux en répétition.
+
+   MESSAGE_FINAL = le tout dernier message affiché, à personnaliser.
+   ============================================================ */
+const ARMER_EFFACEMENT = true;
+const CLE_EFFACEMENT = 'schrecknet-efface';
+const MESSAGE_FINAL =
+  "ils m'ont trouvé...\n" +
+  "effacement du réseau en cours...\n" +
+  "ne cherchez plus. 13_Grê13 ne répondra plus.\n\n" +
+  "connexion terminée.";
+/* ============================================================ */
+
 const fil = document.getElementById('fil');
 const formulaire = document.getElementById('formulaire');
 const champ = document.getElementById('champ');
@@ -556,17 +606,103 @@ function rejouerHistorique() {
   fil.innerHTML = '';
   if (historique.length === 0) {
     ajouterMessage('systeme', 'connexion établie. quelqu\'un observe déjà.');
-    }
+  }
   historique.forEach((m) => ajouterMessage(m.role, m.text));
 }
 
-rejouerHistorique();
+/* ---------- effacement définitif du réseau ---------- */
+
+async function lancerEffacement() {
+  // le dernier message reste visible un court instant avant que tout parte en vrille
+  await new Promise((r) => setTimeout(r, 900));
+
+  if (!reduireMotion) {
+    document.body.classList.add('effacement');
+  }
+
+  // les messages disparaissent un par un, du plus récent au plus ancien
+  const messages = Array.from(fil.children);
+  messages.reverse().forEach((m, i) => {
+    setTimeout(() => m.classList.add('disparu'), 150 * i);
+  });
+
+  await new Promise((r) => setTimeout(r, 1800));
+
+  afficherReseauMort(false);
+}
+
+function afficherReseauMort(instantane) {
+  document.body.classList.remove('effacement');
+  document.body.style.filter = '';
+  fil.innerHTML = '';
+
+  const entete = document.querySelector('.titre');
+  if (entete) entete.textContent = 'SCHRECKNET — HORS LIGNE';
+  const sousTitre = document.querySelector('.sous-titre');
+  if (sousTitre) sousTitre.textContent = 'signal perdu · aucune réponse';
+  const portrait = document.querySelector('.portrait');
+  if (portrait) portrait.style.display = 'none';
+  const ticker = document.querySelector('.ticker');
+  if (ticker) ticker.style.display = 'none';
+
+  const div = document.createElement('div');
+  div.className = 'msg nosferatu';
+  const contenu = document.createElement('div');
+  div.appendChild(contenu);
+  fil.appendChild(div);
+
+  if (!instantane && !reduireMotion) {
+    revelerTexte(contenu, MESSAGE_FINAL);
+  } else {
+    contenu.textContent = MESSAGE_FINAL;
+  }
+
+  champ.value = '';
+  champ.disabled = true;
+  champ.placeholder = 'connexion perdue.';
+  boutonEnvoyer.disabled = true;
+}
+
+/* ---------- état au chargement ---------- */
+if (localStorage.getItem(CLE_EFFACEMENT) === 'oui') {
+  afficherReseauMort(true);
+} else {
+  rejouerHistorique();
+}
+
+/* ---------- envoi de message ---------- */
 
 formulaire.addEventListener('submit', async (e) => {
   e.preventDefault();
   const texte = champ.value.trim();
   if (!texte) return;
 
+  // Commande cachée réservée aux tests du MJ : restaure le site sans toucher
+  // à l'historique de conversation réel. Fonctionne même après la "mort" du site.
+  if (texte.toLowerCase() === 'reset-grele') {
+    champ.value = '';
+    champ.disabled = false;
+    boutonEnvoyer.disabled = false;
+    localStorage.removeItem(CLE_EFFACEMENT);
+    location.reload();
+    return;
+  }
+
+  // Le réseau est déjà mort : plus aucune interaction possible.
+  if (localStorage.getItem(CLE_EFFACEMENT) === 'oui') return;
+
+  // ---- Déclenchement de l'effacement définitif (le prochain message, quel qu'il soit) ----
+  if (ARMER_EFFACEMENT) {
+    champ.value = '';
+    champ.disabled = true;
+    boutonEnvoyer.disabled = true;
+    ajouterMessage('user', texte);
+    localStorage.setItem(CLE_EFFACEMENT, 'oui');
+    await lancerEffacement();
+    return;
+  }
+
+  // ---- Comportement normal (si ARMER_EFFACEMENT est mis à false) ----
   if (sonActif) demarrerBourdonnement();
 
   champ.value = '';
